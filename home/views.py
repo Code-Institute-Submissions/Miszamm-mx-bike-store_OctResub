@@ -1,12 +1,10 @@
 from django.shortcuts import render
-from .models import Carousel
+from .models import Item
 # Create your views here.
 
 
-def index(request):
-    """ Aview to return the index page """
-    obj = Carousel.objects.all()
+def item_list(request):
     context = {
-        'obj': obj
+        'items': Item.objects.all()
     }
-    return render(request, 'home/index.html', context)
+    return render(request, "item_list.html", context)

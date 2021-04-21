@@ -2,40 +2,10 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid w-100 p-0">
-        <div id="carouselExampleCaption" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleCaption" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleCaption" data-slide-to="1"></li>
-                <li data-target="#carouselExampleCaption" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-                {% for object in obj %}
-                <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %}">
-                    <img src="{{ object.image.irl }}" style="height:585px;" class="img-fluid d-block w-100" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1>{{ object.title }}</h1>
-                        <h3 >{{ object.sub_title }}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="my-5">
-            <h4>
-                <a href="" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop now</a>
-            </h4>
-        </div>
-        <div class="row text-center mb-2">
-            <a href="#" btn btn-sm ml-auto mr-auto>View Full Range</a>
-        </div>
-    </div>
-    {% endfor %}
+   
+        
+            
 {% endblock %}
