@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.db import models
-from django. conf import settings
-from django.db import models
 
+CATEGORY_
 
 class Item(models.Model):
     title = models.CharField(max_length=120)
