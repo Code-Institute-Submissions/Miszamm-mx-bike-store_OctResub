@@ -19,6 +19,35 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min..css' %}">
     <link rel="stylesheet" href="{% static 'css/mdb.min..css' %}">
     <link rel="stylesheet" href="{% static 'css/style.min.css.min..css' %}">
+    <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
 
    
     {% endblock %}
@@ -45,11 +74,9 @@
 
     <title>MX Bike Store {% block extra_title %}{% endblock %}</title>
   </head>
+  {% include "navbar.html" %}
   
 <body>
-                  
-          
-    
 
     {% block page_header %}
     {% endblock %}
@@ -57,10 +84,16 @@
     {% block content %}
     {% endblock %}
 
-    {% block postloadjs %}
-    {% endblock %}
+    {% include "footer.html" %}
+    {% include "scripts.html" %}
+    
+
+    {% block extra_scripts %}
+    {% endblock extra_scripts %}
+
 
 </body>
+
 </html>
 
 
