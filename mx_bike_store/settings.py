@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-aj7y8rw77($0v88urwyrt34dbbxu1ofs!l#lct9-ymh^svjw1u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['misza-django-mx-bike-store-app.herokuapp.com/']
 
 
 # Application definition
@@ -104,12 +104,12 @@ WSGI_APPLICATION = 'mx_bike_store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
+# DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-#}
+# }
 
 DATABASES = {
     'default': dj_database_url.parse('postgres://gxxcqfrtltgaxj:38cf4def08e4bd207d10c967f023a8a3c603c78d75673d8ac5a8591591891247@ec2-3-234-85-177.compute-1.amazonaws.com:5432/d6ek0pii7hjbkp')
