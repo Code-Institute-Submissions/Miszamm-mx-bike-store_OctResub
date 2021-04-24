@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-aj7y8rw77($0v88urwyrt34dbbxu1ofs!l#lct9-ymh^svjw1u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['misza-django-mx-bike-store-app.herokuapp.com/']
+ALLOWED_HOSTS = ['misza-django-mx-bike-store-app.herokuapp.com']
 
 
 # Application definition
