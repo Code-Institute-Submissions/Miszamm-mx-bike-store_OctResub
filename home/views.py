@@ -50,7 +50,7 @@ def add_to_cart(request, slug):
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, "Item was added to your cart succesfully")
+        messages.info(request, "Item was addremove from cart functioaaed to your cart succesfully")
         return redirect("home:product", slug=slug)
 
 

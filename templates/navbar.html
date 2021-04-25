@@ -29,6 +29,9 @@
             <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">Shop</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">Contact</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link waves-effect" href="/checkout"
               >Checkout</a>
           </li>
@@ -36,6 +39,7 @@
 
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
+          {% if request.user.is_authenticated %}  
           <li class="nav-item">
             <a class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1"> 1 </span>
@@ -43,8 +47,24 @@
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
+              <span class="clearfix d-none d-sm-inline-block">Logout</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
+              <span class="clearfix d-none d-sm-inline-block">Login</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
+              <span class="clearfix d-none d-sm-inline-block">Signup</span>
+            </a>
+          </li>
+          {% endif %}
         </ul>
-
       </div>
 
     </div>
