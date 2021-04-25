@@ -1,12 +1,15 @@
 {% load static %}
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endblock %}
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
     {% endblock %}
 
     {% block extra_meta %}
@@ -71,26 +74,24 @@
 
     {% block extra_js %}
     {% endblock %}
-
-    <title>MX Bike Store {% block extra_title %}{% endblock %}</title>
   </head>
+
   {% include "navbar.html" %}
 
- 
-  
 <body>
-<div class="mt-5 pt-4">
-{% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} alert-dismissable fade show" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+
+    <div class="mt-5 pt-4">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endif %}
     </div>
-    {% endfor %}
-{% endif %}
-</div>
 
     {% block page_header %}
     {% endblock %}
@@ -98,22 +99,13 @@
     {% block content %}
     {% endblock %}
 
+    {% block extra_body %}
+    {% endblock %}
+
     {% include "footer.html" %}
     {% include "scripts.html" %}
     
-
     {% block extra_scripts %}
     {% endblock extra_scripts %}
-
-
 </body>
 </html>
-
-
-
-
-
-
-
-
- 
