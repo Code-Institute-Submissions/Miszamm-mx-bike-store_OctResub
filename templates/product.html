@@ -32,7 +32,7 @@
             <p class="lead">
                 {% if object.discount_price %}
                 <span class="mr-1">
-                    <del>${{ object_price }}</del>
+                    <del>${{ object.price }}</del>
                 </span>
                 <span>${{ object.discount_price }}</span>
                 {% else %}
@@ -57,7 +57,9 @@
                   Add to cart
                 <i class="fas fa-shopping-cart ml-1"></i>
             </a>
-
+             <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md my-0 p">
+                  Remove from cart
+            </a>
           </div>
           <!--Content-->
 

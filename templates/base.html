@@ -75,8 +75,22 @@
     <title>MX Bike Store {% block extra_title %}{% endblock %}</title>
   </head>
   {% include "navbar.html" %}
+
+ 
   
 <body>
+<div class="mt-5 pt-4">
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+</div>
 
     {% block page_header %}
     {% endblock %}
