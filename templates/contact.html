@@ -1,4 +1,5 @@
  {% extends "base.html" %}
+ {% load static %}
 
 
 {% block content %}
@@ -31,48 +32,58 @@
             <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">Shop</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">Contact</a>
+            <a class="nav-link waves-effect" href="{% url 'contact' %}" target="_blank">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link waves-effect" href="{% url 'checkout' %}"
               >Checkout</a>
           </li>
         </ul>
+         </div>
+  </nav> 
 
-        <!-- Right -->
-        <ul class="navbar-nav nav-flex-icons">
-          {% if request.user.is_authenticated %}  
-          <li class="nav-item">
-            <a href="{% url 'home:order-summary' %}" class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1">{{ request.user|cart_item_count }} </span>
-              <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_logout' %}">
-              <span class="clearfix d-none d-sm-inline-block">Logout</span>
-            </a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_login' %}">
-              <span class="clearfix d-none d-sm-inline-block">Login</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="{% url 'account_signup' %}">
-              <span class="clearfix d-none d-sm-inline-block">Signup</span>
-            </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
+<section class="get_in_touch"> 
+    <h1 class="title">Get In Touch</h1>
 
-    </div>
-  </nav>
+    <form class="contaimer" action="{% url 'contact' %}" method="">
+        <div class="contact-form row">
+            <div class="form-group" col-lg-6>
+                <input id="name" class="input-text" type="text" name="">
+                <label for="name" class="label">Name</label>
+            </div>
+            <div class="form-group" col-lg-6>
+                <input id="email" class="input-text" type="email" name="">
+                <label for="email" class="label">Email</label>
+            </div>
+            <div class="form-group" col-lg-6>
+                <input id="company" class="input-text" type="company" name="">
+                <label for="company" class="label">Company Name</label>
+            </div>
+            <div class="form-group" col-lg-6>
+                <input id="phone" class="input-text" type="text" name="">
+                <label for="phone" class="label">Contact Number</label>
+            </div>
+            <div class="form-group" col-lg-12>
+                <input id="message" class="input-text" type="text" name="">
+                <label for="message" class="label">Message</label>
+            </div>
+            
+            <div class="form-group" col-lg-12>
+                <button type="submit"  class="submit-btn">
+                    <i class="fas fa-envelope-open-text">Send Message</i>
+                </button>
+                <br>
+            </div>
+        </div>
+    </form>
+
+</section>
+    
+      
+
+   
  
- {% endblock content %} 
+{% endblock content %} 
 
 {% block extra_scripts %}
 {% endblock extra_scripts %}

@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.conf import settings
+from django.contrib import messages
 
-# Create your views here.
+
+def contact(request):
+    return render(request, 'contact.html')
