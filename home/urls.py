@@ -4,10 +4,10 @@ from .views import (
     HomeView,
     ItemDetailView,
 )
-
-app_name = 'home'
+    
+#app_name = 'home'
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
-    path('product/<slug>/', ItemDetailView.as_view(), name='product'),
+    path('product/<slug>', ItemDetailView.as_view(), name='product'),
 ]

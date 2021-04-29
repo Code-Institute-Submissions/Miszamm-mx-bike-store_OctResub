@@ -25,10 +25,3 @@ class HomeView(ListView):
 class ItemDetailView(DetailView):
     model = Item
     template_name = "product.html"
-
-
-
-
-
-
-

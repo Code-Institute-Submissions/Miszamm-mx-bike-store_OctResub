@@ -1,5 +1,7 @@
-{% load cart_template_tags %} 
- 
+ {% extends "base.html" %}
+
+
+{% block content %}
  <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark scrolling-navbar">
     <div class="container">
@@ -41,7 +43,7 @@
         <ul class="navbar-nav nav-flex-icons">
           {% if request.user.is_authenticated %}  
           <li class="nav-item">
-            <a href="{% url 'order-summary' %}" class="nav-link waves-effect">
+            <a href="{% url 'home:order-summary' %}" class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1">{{ request.user|cart_item_count }} </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Cart </span>
@@ -69,4 +71,8 @@
 
     </div>
   </nav>
-  <!-- Navbar -->
+ 
+ {% endblock content %} 
+
+{% block extra_scripts %}
+{% endblock extra_scripts %}

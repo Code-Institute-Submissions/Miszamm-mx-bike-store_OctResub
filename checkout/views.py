@@ -10,6 +10,7 @@ from django.utils import timezone
 from .models import OrderItem, Order
 from home.models import Item
 
+
 def checkout(request):
     return render(request, "checkout.html")
 
@@ -42,18 +43,18 @@ def add_to_cart(request, slug):
             order_item.quantity += 1
             order_item.save()
             messages.info(request, "Item quantity was updated succesfully")
-            return redirect("home:order-summary")
+            return redirect("order-summary")
         else:
             order.items.add(order_item)
             messages.info(request, "Item was added to your cart succesfully")
-            return redirect("home:order-summary")
+            return redirect("order-summary")
     else:
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
         messages.info(request, "Item was remove from cart succesfully")
-        return redirect("home:order-summary")
+        return redirect("order-summary")
 
 
 def remove_single_item_from_cart(request, slug):
@@ -74,13 +75,13 @@ def remove_single_item_from_cart(request, slug):
                 order_item.quantity -= 1
             order_item.save()
             messages.info(request, "Item quantity was updated")
-            return redirect("home:order-summary")
+            return redirect("order-summary")
         else:
             messages.info(request, "This item was not in your cart")
-            return redirect("home:product", slug=slug)
+            return redirect("product", slug=slug)
     else:
         messages.info(request, "You do not have an active order")
-        return redirect("home:product", slug=slug)
+        return redirect("product", slug=slug)
 
 
 @login_required
@@ -100,10 +101,10 @@ def remove_from_cart(request, slug):
             )[0]
             order.items.remove(order_item)
             messages.info(request, "Item was removed from your cart sucesfully")
-            return redirect("home:product", slug=slug)
+            return redirect("product", slug=slug)
         else:
             messages.info(request, "This item was not in your cart")
-            return redirect("home:product", slug=slug)
+            return redirect("product", slug=slug)
     else:
         messages.info(request, "You do not have an active order")
-        return redirect("home:product", slug=slug)
+        return redirect("product", slug=slug)

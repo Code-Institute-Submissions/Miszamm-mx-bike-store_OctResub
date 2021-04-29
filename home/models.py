@@ -28,19 +28,19 @@ class Item(models.Model):
 
     def __str__(self):
         return self.title
-
+    """
     def get_absolute_url(self):
-        return reverse("home:product", kwargs={
+        return reverse("product", kwargs={
             'slug': self.slug
         })
-
+    """ 
     def get_add_to_cart_url(self):
-        return reverse("home:add-to-cart", kwargs={
+        return reverse("add-to-cart", kwargs={
             'slug': self.slug
         })
 
     def get_remove_from_cart_url(self):
-        return reverse("home:remove-from-cart", kwargs={
+        return reverse("remove-from-cart", kwargs={
             'slug': self.slug
         })
 
