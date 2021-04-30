@@ -9,10 +9,22 @@ from django.shortcuts import redirect
 from django.utils import timezone
 from .models import OrderItem, Order
 from home.models import Item
+from .forms import CheckoutForm
 
 
-def checkout(request):
-    return render(request, "checkout.html")
+class CheckoutView(View):
+    def get(self, *args, **kwargs):
+        form = CheckoutForm()
+        context = {
+            'form': form
+        }
+        return render(self.request, "checkout.html", context)
+
+    def post(self, *args, **kwargs):
+        form = CheckoutForm(self.request.POST or None)
+        if form.is_valid():
+            print("The form is valid")
+            return redirect('checkout')
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
