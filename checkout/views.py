@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, View
 from django.shortcuts import redirect
 from django.utils import timezone
-from .models import OrderItem, Order
+from .models import OrderItem, Order, BillingAddress
 from home.models import Item
 from .forms import CheckoutForm
 
@@ -22,10 +22,36 @@ class CheckoutView(View):
 
     def post(self, *args, **kwargs):
         form = CheckoutForm(self.request.POST or None)
-        if form.is_valid():
-            print("The form is valid")
+        try:
+            order = Order.objects.get(user=self.request.user, ordered=False)
+            if form.is_valid():
+                street_address = form.cleaned_data.get('street_addres')
+                apartment_address = form.cleaned_data.get('apartment_address')
+                country = form.cleaned_data.get('country')
+                zip = form.cleaned_data.get('zip')
+                # Functionality for those fields needs to be added
+                 #   same_delivery_address = form.cleaned_data.get(
+                 #       'same_billing_address')
+                 #   save_info = form.cleaned_data.get('save_info')
+                payment_option = form.cleaned_data.get('payment_option')
+                billing_address = BillingAddress(
+                    user=self.request.user,
+                    street_address=street_address,
+                    apartment_address=apartment_address,
+                    country=country,
+                    zip=zip
+                )
+                billing_address.save()
+                order.billing_address = billing_address
+                order.save()
+                # TODO: add redirect to the selected paymnet option            
+                return redirect('checkout')
+            messages.warning(self.request, "Failed checkout")
             return redirect('checkout')
-
+        except ObjectDoesNotExist:
+            messages.error(self.request, "You do not have an active order")
+            return redirect("order-summary")
+        
 
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):

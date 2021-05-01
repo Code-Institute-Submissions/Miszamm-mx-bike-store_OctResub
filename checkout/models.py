@@ -1,7 +1,9 @@
 from django.db import models
 from django.conf import settings
 from home.models import Item
+from django_countries.fields import CountryField
 # Create your models here.
+
 
 class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -35,6 +37,8 @@ class Order(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
+    billing_address = models.ForeignKey(
+        'BillingAddress', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.user.username  
@@ -44,3 +48,15 @@ class Order(models.Model):
         for order_item in self.items.all():
             total += order_item.get_final_price()
         return total
+
+
+class BillingAddress(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    street_addres = models.CharField(max_length=120)
+    apartment_address = models.CharField(max_length=120)
+    country = CountryField(multiple=False)
+    zip = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.user.username
