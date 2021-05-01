@@ -6,7 +6,8 @@ from django.shortcuts import reverse
 CATEGORY_CHOICES = (
     ('H', 'Helmets'),
     ('B', 'Boots'),
-    ('RG', 'Riding gear')
+    ('O', 'Outwear'),
+    ('A', 'Accesories')
 )
 
 LABEL_CHOICES = (
@@ -24,7 +25,9 @@ class Item(models.Model):
     label = models.CharField(choices=LABEL_CHOICES, max_length=1)
     slug = models.SlugField()
     description = models.TextField()
-
+    image = models.FileField(
+        upload_to='product_image', null=True
+    )
 
     def __str__(self):
         return self.title

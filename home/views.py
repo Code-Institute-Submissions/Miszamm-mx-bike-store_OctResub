@@ -20,6 +20,14 @@ class HomeView(ListView):
     model = Item
     paginate_by = 8
     template_name = "home.html"
+    
+    def get_queryset(self):
+        category = self.request.GET.get('category')
+        if category:
+            q = Item.objects.filter(category=category)
+        else:
+            q = Item.objects.all()
+        return q
 
 
 class ItemDetailView(DetailView):

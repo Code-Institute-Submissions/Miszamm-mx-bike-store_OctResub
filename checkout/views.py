@@ -10,13 +10,17 @@ from django.utils import timezone
 from .models import OrderItem, Order, BillingAddress
 from home.models import Item
 from .forms import CheckoutForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {
-            'form': form
+            'form': form,
+            'stripe': 'pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB'
+                        
         }
         return render(self.request, "checkout.html", context)
 
@@ -51,7 +55,12 @@ class CheckoutView(View):
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("order-summary")
-        
+
+
+class PaymentView(View):
+    def get(self, *args, **kwargs):
+        return render(self.request, "payment.html")
+
 
 class OrderSummaryView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
@@ -146,3 +155,47 @@ def remove_from_cart(request, slug):
     else:
         messages.info(request, "You do not have an active order")
         return redirect("product", slug=slug)
+
+
+#! /usr/bin/env python3.6
+
+"""
+server.py
+Stripe Sample.
+Python 3.6 or newer required.
+"""
+import os
+
+
+import stripe
+# This is your real test secret API key.
+stripe.api_key = 'sk_test_51IUTHGAWMAUBj98U84CnKpfmV44EmBSxWGQAVeuwDr0ECfVlvdT9ImT3ZSdtfnRVtDwx6iCUxnEt0twSXu9lu1Th002CTlLLDB'
+
+YOUR_DOMAIN = 'http://localhost:4242'
+
+
+@csrf_exempt
+def create_checkout_session(request):
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': 2000,
+                        'product_data': {
+                            'name': 'Stubborn Attachments',
+                            'images': ['https://i.imgur.com/EHyR2nP.png'],
+                        },
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=YOUR_DOMAIN + '/success.html',
+            cancel_url=YOUR_DOMAIN + '/cancel.html',
+        )
+        return JsonResponse({'id': checkout_session.id})
+    except Exception as e:
+        return JsonResponse({'error':str(e)})
