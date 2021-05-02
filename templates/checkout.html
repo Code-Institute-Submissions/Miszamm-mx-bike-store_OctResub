@@ -73,7 +73,7 @@
               <hr>
 
               <div class="custom-control custom-checkbox">
-                <input {% if form.same_delivery_address.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="same_billing address" id="same-address">
+                <input {% if form.same_shipping_address.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="same_billing address" id="same-address">
                 <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
               </div>
               <div class="custom-control custom-checkbox">
@@ -99,10 +99,10 @@
     
 
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-
+              <button id="checkout-button"class="btn btn-primary btn-lg btn-block" type="button">
+                  Continue to checkout
+                </button>
             </form>
-    <button type="button" id="checkout-button">Checkout</button>
           </div>
           <!--/.Card-->
 
@@ -187,16 +187,10 @@
         });
     });
   </script>
-
-  
+ 
+ 
   {% endblock content %} 
 
-  {% block extra_scripts %}
-  {% endblock extra_scripts %}
+ 
 
-  {% block postloadjs %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
-  {% endblock %}
+ 

@@ -7,7 +7,7 @@ CATEGORY_CHOICES = (
     ('H', 'Helmets'),
     ('B', 'Boots'),
     ('O', 'Outwear'),
-    ('A', 'Accesories')
+    ('A', 'Accessories')
 )
 
 LABEL_CHOICES = (
@@ -15,6 +15,15 @@ LABEL_CHOICES = (
     ('S', 'secondary'),
     ('D', 'danger')
 )
+
+
+class Carousel(models.Model):
+    image = models.ImageField(upload_to='pics')
+    title = models.CharField(max_length=150)
+    sub_title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
 
 
 class Item(models.Model):
@@ -48,45 +57,45 @@ class Item(models.Model):
         })
 
 '''
-class OrderItem(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, blank=True, null=True)
-    ordered = models.BooleanField(default=False)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    class OrderItem(models.Model):
+        user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE, blank=True, null=True)
+        ordered = models.BooleanField(default=False)
+        item = models.ForeignKey(Item, on_delete=models.CASCADE)
+        quantity = models.IntegerField(default=1)
 
-    def __str__(self):
-        return f"{self.quantity} of {self.item.title}"
+        def __str__(self):
+            return f"{self.quantity} of {self.item.title}"
 
-    def get_total_item_price(self):
-        return self.quantity * self.item.price
+        def get_total_item_price(self):
+            return self.quantity * self.item.price
 
-    def get_total_discount_item_price(self):
-        return self.quantity * self.item.discount_price
+        def get_total_discount_item_price(self):
+            return self.quantity * self.item.discount_price
 
-    def get_amount_saved(self):
-        return self.get_total_item_price() - self.get_total_discount_item_price()
+        def get_amount_saved(self):
+            return self.get_total_item_price() - self.get_total_discount_item_price()
 
-    def get_final_price(self):
-        if self.item.discount_price:
-            return self.get_total_discount_item_price()
-        return self.get_total_item_price()
+        def get_final_price(self):
+            if self.item.discount_price:
+                return self.get_total_discount_item_price()
+            return self.get_total_item_price()
 
 
-class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    items = models.ManyToManyField(OrderItem)
-    start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
+    class Order(models.Model):
+        user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+        items = models.ManyToManyField(OrderItem)
+        start_date = models.DateTimeField(auto_now_add=True)
+        ordered_date = models.DateTimeField()
+        ordered = models.BooleanField(default=False)
 
-    def __str__(self):
-        return self.user.username  
+        def __str__(self):
+            return self.user.username  
 
-    def get_total(self):
-        total = 0
-        for order_item in self.items.all():
-            total += order_item.get_final_price()
-        return total
+        def get_total(self):
+            total = 0
+            for order_item in self.items.all():
+                total += order_item.get_final_price()
+            return total
 '''

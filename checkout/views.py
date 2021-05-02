@@ -19,8 +19,7 @@ class CheckoutView(View):
         form = CheckoutForm()
         context = {
             'form': form,
-            'stripe': 'pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB'
-                        
+            'stripe': 'pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB'                   
         }
         return render(self.request, "checkout.html", context)
 
@@ -34,8 +33,8 @@ class CheckoutView(View):
                 country = form.cleaned_data.get('country')
                 zip = form.cleaned_data.get('zip')
                 # Functionality for those fields needs to be added
-                 #   same_delivery_address = form.cleaned_data.get(
-                 #       'same_billing_address')
+                 #   same_shipping_address = form.cleaned_data.get(
+                 #       'same_shipping_address')
                  #   save_info = form.cleaned_data.get('save_info')
                 payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress(
@@ -157,13 +156,7 @@ def remove_from_cart(request, slug):
         return redirect("product", slug=slug)
 
 
-#! /usr/bin/env python3.6
 
-"""
-server.py
-Stripe Sample.
-Python 3.6 or newer required.
-"""
 import os
 
 
