@@ -21,6 +21,7 @@ class Carousel(models.Model):
     image = models.ImageField(upload_to='pics')
     title = models.CharField(max_length=150)
     sub_title = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

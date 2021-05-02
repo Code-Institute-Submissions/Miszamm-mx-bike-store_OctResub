@@ -18,8 +18,7 @@ class CheckoutView(View):
     def get(self, *args, **kwargs):
         form = CheckoutForm()
         context = {
-            'form': form,
-            'stripe': 'pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB'                   
+            'form': form                   
         }
         return render(self.request, "checkout.html", context)
 
@@ -119,7 +118,9 @@ def remove_single_item_from_cart(request, slug):
             )[0]
             if order_item.quantity > 1:
                 order_item.quantity -= 1
-            order_item.save()
+                order_item.save()
+            elif order_item.quantity == 1:
+                order_item.delete() 
             messages.info(request, "Item quantity was updated")
             return redirect("order-summary")
         else:

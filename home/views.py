@@ -9,14 +9,6 @@ from django.utils import timezone
 from .models import Item, Carousel
 
 
-def HomeView(request):
-    obj = Carousel.objects.all()
-    context = {
-        'obj':obj
-    }
-    return render(request, 'index.html', context)
-
-
 def products(request):
     context = {
         'items': Item.objects.all()
@@ -36,6 +28,11 @@ class HomeView(ListView):
         else:
             q = Item.objects.all()
         return q
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = Carousel.objects.filter(is_active=True).all()
+        return context
 
 
 class ItemDetailView(DetailView):
