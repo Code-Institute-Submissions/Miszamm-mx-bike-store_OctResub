@@ -16,9 +16,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
+        order = Order.objects.get(user=self.request.user, ordered=False)
         form = CheckoutForm()
         context = {
-            'form': form                   
+            'form': form,
+            'object': order                  
         }
         return render(self.request, "checkout.html", context)
 
@@ -170,22 +172,26 @@ YOUR_DOMAIN = 'http://localhost:4242'
 
 @csrf_exempt
 def create_checkout_session(request):
+    order = Order.objects.get(user=request.user, ordered=False)
+    print(order.items)
+    line_items = []
+    for item in order.items.all():
+        order_item = {
+            'price_data': {
+                'currency': 'usd',
+                'unit_amount': int(item.price * 100),
+                'product_data': {
+                    'name': item.title,
+                    'images': ['https://i.imgur.com/EHyR2nP.png'],
+                },
+            },
+            'quantity': order.quantity,
+        }
+        line_items.append(order_item)
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            line_items=[
-                {
-                    'price_data': {
-                        'currency': 'usd',
-                        'unit_amount': 2000,
-                        'product_data': {
-                            'name': 'Stubborn Attachments',
-                            'images': ['https://i.imgur.com/EHyR2nP.png'],
-                        },
-                    },
-                    'quantity': 1,
-                },
-            ],
+            line_items=line_items,      
             mode='payment',
             success_url=YOUR_DOMAIN + '/success.html',
             cancel_url=YOUR_DOMAIN + '/cancel.html',

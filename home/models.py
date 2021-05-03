@@ -22,6 +22,10 @@ class Carousel(models.Model):
     title = models.CharField(max_length=150)
     sub_title = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
+    description = models.TextField(null=True)
+    link = models.CharField(max_length=100, null=True)
+    link_text = models.CharField(max_length=100, null=True)
+
 
     def __str__(self):
         return self.title
@@ -56,6 +60,7 @@ class Item(models.Model):
         return reverse("remove-from-cart", kwargs={
             'slug': self.slug
         })
+
 
 '''
     class OrderItem(models.Model):
