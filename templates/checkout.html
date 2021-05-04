@@ -19,7 +19,7 @@
           <!--Card-->
           <div class="card">
             <!--Card content-->
-            <form method="POST" class="card-body">
+            <form id="checkout"  method="POST" class="card-body">
               {% csrf_token %}
               <!--address-->
               <div class="md-form mb-5">
@@ -72,36 +72,10 @@
 
               <hr>
 
-              <div class="custom-control custom-checkbox">
-                <input {% if form.same_shipping_address.value %} checked {% endif %} type="checkbox" class="custom-control-input" name="same_billing address" id="same-address">
-                <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-             <input {% if form.save_info.value %}checked{% endif %} type="checkbox" class="custom-control-input" name="save_info" id="save-info"> 
-                <label class="custom-control-label" for="save-info">Save this information for next time</label>
-              </div>
-
-              <hr>
-
-              <div class="d-block my-3">
-              {% for value, name in form.fields.payment_option.choices %}
-                <div class="custom-control custom-radio">
-                    <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
-                    <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
-            <!--{{ form.payment_option }} --->
-                </div>
-                {% endfor %}
-       <!---         <div class="custom-control custom-radio">
-                  <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                  <label class="custom-control-label" for="paypal">Paypal</label>
-                </div>  --->
-              </div>
-    
+              
 
               <hr class="mb-4">
-              <button id="checkout-button"class="btn btn-primary btn-lg btn-block" type="button">
-                  Continue to checkout
-                </button>
+             <button>go to</button>
             </form>
           </div>
           <!--/.Card-->
@@ -157,8 +131,10 @@
     var checkoutButton = document.getElementById("checkout-button");
 
     checkoutButton.addEventListener("click", function () {
+        var formdata = new FormData(document.getElementById('checkout'));
       fetch("/checkout/create-checkout-session/", {
         method: "POST",
+        body: formdata
       })
         .then(function (response) {
           return response.json();

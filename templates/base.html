@@ -29,7 +29,7 @@
     body,
     header,
     .carousel {
-      height: 60vh;
+      height: 100%;
     }
 
     @media (max-width: 740px) {
@@ -84,7 +84,7 @@
 
 <body>
 
-    <div class="mt-5 pt-4">
+    <div class="mt-5 pt-4 ">
     {% if messages %}
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} alert-dismissable fade show" role="alert">

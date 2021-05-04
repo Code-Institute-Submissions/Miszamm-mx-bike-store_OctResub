@@ -1,36 +1,38 @@
-{% extends "base.html" %}
-{% load static %}
-{% load crispy|forms_tags %}
+<script src="https://js.stripe.com/v3/"></script>
 
-{% block head_links %}
-{% endblock head_links %}
-
-
-{% block content %}
-  <main>
-      <div class="container wow fadeIn">
-          <h2 class="my-5 h2 text-center">Payment</h2>
-          <div class="row">
-              <div class="col-md-12 mb-4">
-
-                  <div class="card">
-
-                      <script src="https://js.stripe.com/v3/"></script>
-                        <form method="POST" class="card-body">
-                            {% csrf_token %}
-                            {{ form|crispy }}
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                        </form>
-                  
-                  </form>
+<button id="checkout-button"class="btn btn-primary btn-lg btn-block" type="button">
+                  Continue to checkout
+                </button>
 
 
 
-              </div>
-          </div>
-      </div>
-      </div>
-  </main>
 
-  {% endblock content %} 
+ <script type="text/javascript">
+    // Create an instance of the Stripe object with your publishable API key
+    var stripe = Stripe("pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB");
+    var checkoutButton = document.getElementById("checkout-button");
 
+    checkoutButton.addEventListener("click", function () {   
+      fetch("/checkout/create-checkout-session/", {
+        method: "POST",
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function (result) {
+          // If redirectToCheckout fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using error.message.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+    });
+  </script>
+ 

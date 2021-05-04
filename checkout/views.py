@@ -12,6 +12,7 @@ from home.models import Item
 from .forms import CheckoutForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 
 class CheckoutView(View):
@@ -38,18 +39,26 @@ class CheckoutView(View):
                  #       'same_shipping_address')
                  #   save_info = form.cleaned_data.get('save_info')
                 payment_option = form.cleaned_data.get('payment_option')
-                billing_address = BillingAddress(
-                    user=self.request.user,
-                    street_address=street_address,
-                    apartment_address=apartment_address,
-                    country=country,
-                    zip=zip
-                )
+                billing_address = BillingAddress.objects.filter(user=self.request.user).first()
+                if not billing_address:
+                    billing_address = BillingAddress(
+                        user=self.request.user,
+                        street_address=street_address,
+                        apartment_address=apartment_address,
+                        country=country,
+                        zip=zip
+                    )
+                else:
+                    billing_address.street_address = street_address
+                    billing_address.apartment_address = apartment_address
+                    billing_address.country = country
+                    billing_address.zip = zip
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()
                 # TODO: add redirect to the selected paymnet option            
-                return redirect('checkout')
+                return redirect('payment')
+            print(form.errors)
             messages.warning(self.request, "Failed checkout")
             return redirect('checkout')
         except ObjectDoesNotExist:
@@ -173,19 +182,18 @@ YOUR_DOMAIN = 'http://localhost:4242'
 @csrf_exempt
 def create_checkout_session(request):
     order = Order.objects.get(user=request.user, ordered=False)
-    print(order.items)
     line_items = []
     for item in order.items.all():
         order_item = {
             'price_data': {
                 'currency': 'usd',
-                'unit_amount': int(item.price * 100),
+                'unit_amount': int(item.item.price * 100),
                 'product_data': {
-                    'name': item.title,
-                    'images': ['https://i.imgur.com/EHyR2nP.png'],
+                    'name': item.item.title,
+                    'images': [request.build_absolute_uri(settings.MEDIA_URL + str(item.item.image))],
                 },
             },
-            'quantity': order.quantity,
+            'quantity': item.quantity,
         }
         line_items.append(order_item)
     try:
