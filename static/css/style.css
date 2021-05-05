@@ -3,7 +3,7 @@
     border-bottom: 1px solid #f93800;
 }
 .navbar-brand {
-    color: #283350!important;
+    color: #ffb500!important;
     text-transform: uppercase;
     font-weight: 400;
 }
@@ -12,10 +12,21 @@
         color: #ffb500!important;
 }
 
+.navbar-brand .blue-text:hover{
+        color: #f93800!important;
+}
 
+.navbar.navbar-dark .navbar-toggler{
+    color: #f93800;
+}
+
+.navbar.navbar-dark .navbar-toggler-icon {
+    color: #ffb500!important;
+}
 
 .nav-link {
     color: #f93800!important;
+    text-transform: uppercase;
     margin-right: 5px;
     font-weight: 400;
     
@@ -30,6 +41,11 @@
     color: #ffb500;
     border-color: #f93800;
 }
+
+.navbar.navbar-dark form .md-form input {
+    border-bottom: 1px solid #f93800;
+}
+
 
 .get_in_touch {
     max-width: 800px;
@@ -50,6 +66,14 @@
     background: linear-gradient(to right, #ffb500 0%, #f93800 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+p.sub-title {
+    text-transform: uppercase;
+    font-size: 1em;
+    color: #283350;
+    font-weight: 400;
+    text-align: center;
 }
 
 .contact-form .form-group {

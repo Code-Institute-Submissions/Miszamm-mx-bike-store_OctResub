@@ -23,16 +23,16 @@
               {% csrf_token %}
               <!--address-->
               <div class="md-form mb-5">
-                <!---<input type="text" id="address" class="form-control" placeholder="1234 Main St">-->
-                {{ form.street_addres }}
-                <label for="address" class="">Address</label>
+                <input type="text" id="address" class="form-control">   
+                {{ form.apartment_address }}
+                <label for="address" class="">Apartment/house no.</label>
               </div>
 
               <!--address-2-->
               <div class="md-form mb-5">
-                <input type="text" id="address-2" class="form-control" placeholder="Apartment or suite">
-                {{ form.apartment_address }}
-                <label for="address-2" class="">Address 2 (optional)</label>
+                <input type="text" id="address-2" class="form-control">
+                {{ form.street_addres }}
+                <label for="address-2" class="">Address (optional)</label>
               </div>
 
               <!--Grid row-->
@@ -63,27 +63,15 @@
                 <div class="invalid-feedback">
                     Post code required.
                   </div>
-
                 </div>
-                <!--Grid column-->
-
               </div>
-              <!--Grid row-->
-
-              <hr>
-
-              
 
               <hr class="mb-4">
-             <button>go to</button>
+             <button class="btn btn-primary btn-lg btn-block" type="button">Continue To Payment</button>
+             
             </form>
           </div>
-          <!--/.Card-->
-
         </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
         <div class="col-md-4 mb-4">
 
           <!-- Heading -->
