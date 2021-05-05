@@ -28,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = development
+DEBUG = True # development
 
-# if development:
-#    ALLOWED_HOSTS = ['localhost']
-# else:
-ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
+if development:
+    ALLOWED_HOSTS = ['localhost']
+else:
+    ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 
 
 # Application definition
