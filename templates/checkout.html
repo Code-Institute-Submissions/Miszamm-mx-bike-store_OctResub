@@ -67,7 +67,7 @@
               </div>
 
               <hr class="mb-4">
-             <button class="btn btn-primary btn-lg btn-block" type="button">Continue To Payment</button>
+             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue To Payment</button>
              
             </form>
           </div>
@@ -111,38 +111,6 @@
 
 
 
-  
-  
-  <script type="text/javascript">
-    // Create an instance of the Stripe object with your publishable API key
-    var stripe = Stripe("pk_test_51IUTHGAWMAUBj98U0Y14RaGZz2l32q9BZEOX8m2iULQKF79HqTt47YogQmvZSZRwZbyy4hstD6qNanG6gtsM8AX300TestbLtB");
-    var checkoutButton = document.getElementById("checkout-button");
-
-    checkoutButton.addEventListener("click", function () {
-        var formdata = new FormData(document.getElementById('checkout'));
-      fetch("/checkout/create-checkout-session/", {
-        method: "POST",
-        body: formdata
-      })
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (session) {
-          return stripe.redirectToCheckout({ sessionId: session.id });
-        })
-        .then(function (result) {
-          // If redirectToCheckout fails due to a browser or network
-          // error, you should display the localized error message to your
-          // customer using error.message.
-          if (result.error) {
-            alert(result.error.message);
-          }
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    });
-  </script>
  
  
   {% endblock content %} 

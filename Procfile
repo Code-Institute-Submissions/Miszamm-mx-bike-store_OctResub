@@ -1,1 +1,1 @@
-web: gunicorn mx-bike-store.wsgi:application
+web: gunicorn mx_bike_store.wsgi:application

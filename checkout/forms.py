@@ -10,7 +10,7 @@ class CheckoutForm(forms.Form):
     apartment_address = forms.CharField(required=False, widget=forms.TextInput(
         attrs={
             'placeholder': ''
-    }))
+        }))
     country = CountryField(blank_label='(select country)').formfield(
         widget=CountrySelectWidget(attrs={
             'class': 'custom-select d-block w-100'

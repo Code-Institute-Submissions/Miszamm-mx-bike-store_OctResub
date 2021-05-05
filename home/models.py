@@ -42,6 +42,7 @@ class Item(models.Model):
     image = models.FileField(
         upload_to='product_image', null=True
     )
+    additional_information = models.TextField(null=True)
 
     def __str__(self):
         return self.title

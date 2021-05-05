@@ -1,3 +1,9 @@
+body {
+    background-color: #f5f5f5;
+    margin: 0px;
+    height: 80vh;
+}
+
 .navbar { 
     background: #283350;
     border-bottom: 1px solid #f93800;
