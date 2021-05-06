@@ -20,7 +20,7 @@ class CheckoutView(View):
         form = CheckoutForm()
         context = {
             'form': form,
-            'object': order                  
+            'object': order             
         }
         return render(self.request, "checkout.html", context)
 
@@ -37,7 +37,6 @@ class CheckoutView(View):
                 #   same_shipping_address = form.cleaned_data.get(
                 #       'same_shipping_address')
             #   save_info = form.cleaned_data.get('save_info')
-                payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress.objects.filter(user=self.request.user).first()
                 if not billing_address:
                     billing_address = BillingAddress(
@@ -54,8 +53,7 @@ class CheckoutView(View):
                     billing_address.zip = zip
                 billing_address.save()
                 order.billing_address = billing_address
-                order.save()
-                # TODO: add redirect to the selected paymnet option        
+                order.save()       
                 return redirect('payment')
             print(form.errors)
             messages.warning(self.request, "Failed checkout")
@@ -210,9 +208,9 @@ def create_checkout_session(request):
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            line_items=line_items,      
+            line_items=line_items,  
             mode='payment',
-            success_url=settings.SITE_DOMAIN + '/checkout/success?session_id={CHECKOUT_SESSION_ID}', 
+            success_url=settings.SITE_DOMAIN + '/checkout/success?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=settings.SITE_DOMAIN + '/cancel.html',
         )
         return JsonResponse({'id': checkout_session.id})
