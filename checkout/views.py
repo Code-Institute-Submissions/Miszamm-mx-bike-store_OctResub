@@ -1,10 +1,9 @@
-from django.shortcuts import render
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import View
 from django.shortcuts import redirect
 from django.utils import timezone
 from .models import OrderItem, Order, BillingAddress
@@ -17,7 +16,7 @@ from django.conf import settings
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
-        order = Order.objects.get(user=self.request.user, ordered=False)
+        order = Order.objects.filter(user=self.request.user, ordered=False).first()
         form = CheckoutForm()
         context = {
             'form': form,
@@ -35,9 +34,9 @@ class CheckoutView(View):
                 country = form.cleaned_data.get('country')
                 zip = form.cleaned_data.get('zip')
                 # Functionality for those fields needs to be added
-                 #   same_shipping_address = form.cleaned_data.get(
-                 #       'same_shipping_address')
-                 #   save_info = form.cleaned_data.get('save_info')
+                #   same_shipping_address = form.cleaned_data.get(
+                #       'same_shipping_address')
+            #   save_info = form.cleaned_data.get('save_info')
                 payment_option = form.cleaned_data.get('payment_option')
                 billing_address = BillingAddress.objects.filter(user=self.request.user).first()
                 if not billing_address:
@@ -56,7 +55,7 @@ class CheckoutView(View):
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()
-                # TODO: add redirect to the selected paymnet option            
+                # TODO: add redirect to the selected paymnet option        
                 return redirect('payment')
             print(form.errors)
             messages.warning(self.request, "Failed checkout")
@@ -131,7 +130,7 @@ def remove_single_item_from_cart(request, slug):
                 order_item.quantity -= 1
                 order_item.save()
             elif order_item.quantity == 1:
-                order_item.delete() 
+                order_item.delete()
             messages.info(request, "Item quantity was updated")
             return redirect("order-summary")
         else:
@@ -168,6 +167,20 @@ def remove_from_cart(request, slug):
         return redirect("product", slug=slug)
 
 
+class SuccessView(View):
+    def get(self, *args, **kwargs):
+        session_id = self.request.GET.get('session_id')
+        session = stripe.checkout.Session.retrieve(session_id)
+        customer = stripe.Customer.retrieve(session.customer)
+        order = Order.objects.get(user=self.request.user, ordered=False)
+        order.ordered = True
+        order.save()
+        context = {
+            'object': order,
+            'customer_email': customer.email
+        }
+        return render(self.request, "success.html", context)
+
 
 import os
 
@@ -175,8 +188,6 @@ import os
 import stripe
 # This is your real test secret API key.
 stripe.api_key = 'sk_test_51IUTHGAWMAUBj98U84CnKpfmV44EmBSxWGQAVeuwDr0ECfVlvdT9ImT3ZSdtfnRVtDwx6iCUxnEt0twSXu9lu1Th002CTlLLDB'
-
-YOUR_DOMAIN = 'http://localhost:4242'
 
 
 @csrf_exempt
@@ -201,9 +212,9 @@ def create_checkout_session(request):
             payment_method_types=['card'],
             line_items=line_items,      
             mode='payment',
-            success_url=YOUR_DOMAIN + '/success.html',
-            cancel_url=YOUR_DOMAIN + '/cancel.html',
+            success_url=settings.SITE_DOMAIN + '/checkout/success?session_id={CHECKOUT_SESSION_ID}', 
+            cancel_url=settings.SITE_DOMAIN + '/cancel.html',
         )
         return JsonResponse({'id': checkout_session.id})
     except Exception as e:
-        return JsonResponse({'error':str(e)})
+        return JsonResponse({'error': str(e)})

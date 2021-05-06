@@ -169,9 +169,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'https://mx-store.s3-eu-west-1.amazonaws.com/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -183,3 +184,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CRISPY FORMS
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'mx-store'
+
+if development:
+    SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu03.gitpod.io'
+else:
+    SITE_DOMAIN = 'https://misza-django-mx-bike-store-app.herokuapp.com'

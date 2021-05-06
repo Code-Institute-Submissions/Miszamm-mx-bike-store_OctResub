@@ -1,6 +1,4 @@
-from django.shortcuts import render, redirect, reverse
-from django.conf import settings
-from django.contrib import messages
+from django.shortcuts import render   
 from django.core.mail import send_mail
 
 
