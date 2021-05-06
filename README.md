@@ -1,45 +1,89 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# MX BIKE STORE
 
-Welcome Michal Misza,
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
-
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-## Updates Since The Instructional Video
-
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
+* UX
+* Project Goal
+   - User Stories - Customers
+   - User Stories - Administrator
+* Wireframes
+* Data Structure
+* Design
+  - Typography 
+  - Colors
+* Features
+   - Home Paage 
+   - Store Page
+   - Product Page
+   - Contact Page
+   - Shopping Cart 
+   - Administrator Features
+* Features To Be Implemented
+* Testing
+* Deploymnet
+    -  Local Deploymnet 
+    - Deploymnet To Heroku
+* Technologies 
+* Tools Used 
+* Credits
+    - Acknoledgements
 ---
+MX BIKE STORE is an online store for hypothetical dirt buke riders providing vide range of goods in different categoties. 
+The purpose of this site is to provide simple and intuitive way for the petrol heads to browse and purchase products they are looking for.
+additionally the site allowe the shoop owners/administrators to manage the products in the shop and to update necessery informations about the products.
 
-Happy coding!
+The site was deployed to Heroku, The site could be view [here](https://www.google.com).
+
+# UX
+## Project Goal
+MX BIKE STORE is the final project on my Fullstack Deevelopment Course with Code Institute and th epurpose of this project was to develope e- commerce site 
+Django framework, with fully functional payment system with Stripe, and static file hosting with AWS. The site is functional and could be used in real world with additional security 
+implamentaions to the checkout process, and furher features to product pages. 
+
+## User Stories
+### User Stories - Customers
+As a customer of the online store I would like to:
+* Browse products 
+* Search products by name or category if you are looking for specific product
+* Have access to full description of the product 
+* Have abillity to choose a product from the store and adding to a cart 
+* Have ability to update quantity of the product in the cart 
+* Create a profile so i can store order history
+* Buy a product and paying using a card 
+* Recive an email confirmation about my order 
+* Have ability to contact store owner or send an email about matters related to my purchase or upcoming events
+
+### User Stories - Administrator
+As a store administrator I would like to:
+* Add/remove or update product to keep the store up to date 
+* Add new promotional materials to the store to keep users informed about latest realeses or promotions
+* Recive orders and emails related to the offers 
+* Keep users informed about best selling products or offers
+* ability to store informations about previous purchasess
+
+## Wireframes
+The wireframes where created based on user stories, and provide a starting point 
+and guidline in the development process, but they don't represent the end result of the whole process 
+of creating the app.
+
+## Data Structure 
+
+
+
+# Tools Used 
+* Github
+* VS Code
+* Heroku 
+* [Bootstrap MBD](https://mdbootstrap.com)
+* [Tiny PNG](https://tinypng.com)
+* [Google Fonts](https://fonts.google.com)
+* [Font Awesome](https://fontawesome.com)
+
+# Credits
+## Aknowledgements
+- This Site is for educational use.
+- I would like to thank all of my fiends and familly who have helped to test appllication and 
+and came back with constructive feedback
+- Massive thank you to whole Code Institute team for continous support evennn when  things wheren't going as planned
+ and a lot of doubts took over my head. I'm really greatfull for your understanding and motivation. Quite possibly 
+ it was one of the best decission I've ever made despite all the odds. 
+- I would like to thank Felipe Alarcon who was always there with his valuable feedback, and motivation. 
