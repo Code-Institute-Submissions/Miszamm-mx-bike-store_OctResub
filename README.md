@@ -11,7 +11,7 @@
   - Typography 
   - Colors
 * Features
-   - Home Paage 
+   - Home Page 
    - Store Page
    - Product Page
    - Contact Page
@@ -30,8 +30,8 @@
 MX BIKE STORE is an online store for hypothetical dirt buke riders providing vide range of goods in different categoties. 
 The purpose of this site is to provide simple and intuitive way for the petrol heads to browse and purchase products they are looking for.
 additionally the site allowe the shoop owners/administrators to manage the products in the shop and to update necessery informations about the products.
-
-The site was deployed to Heroku, The site could be view [here](https://www.google.com).
+![](/static/img/images/mockup.jpeg)
+The site was deployed to Heroku, The site could be view [here](https://misza-django-mx-bike-store-app.herokuapp.com/).
 
 # UX
 ## Project Goal
@@ -63,11 +63,28 @@ As a store administrator I would like to:
 ## Wireframes
 The wireframes where created based on user stories, and provide a starting point 
 and guidline in the development process, but they don't represent the end result of the whole process 
-of creating the app.
+of creating the app. I built the wireframes for this project using [Balsamic](https://balsamiq.com/). 
+![](/static/img/wireframes/home-page.png)![](/static/img/wireframes/cart.png)
+![](/static/img/wireframes/add-product.png)![](/static/img/wireframes/cart.png)
+![](/static/img/wireframes/payment.png)![](/static/img/wireframes/contact.png.png)
+![](/static/img/wireframes/store.png)![](/static/img/wireframes/payment.png)
 
 ## Data Structure 
+Order:
+
+Key   |  Value
+------|-------
 
 
+
+
+
+## Design
+Colours picked for this project where carefully selected even though it might look like the home page is overloaded with dark colours it was done on purpouse,
+to contrast rather bright colours of the entire range of products.
+![](/static/img/images/c.scheme.png)
+
+Icons used in this project comes from [FontAwesome](https://fontawesome.com/)
 
 # Tools Used 
 * Github
