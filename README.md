@@ -97,20 +97,102 @@ BillingAddress:
 
 key  | Value
 ---- | ------ 
-user  | models.ForeignKey(settings.AUTH_USER_MODEL
-street_address | models.CharField(max_length=100)
+user              | models.ForeignKey(settings.AUTH_USER_MODEL
+street_address    | models.CharField(max_length=100)
 apartment_address |  models.CharField(max_length=100)
-country  |  CountryField(multiple=False)
-zip  |  models.CharField(max_length=100)
+country           |  CountryField(multiple=False)
+zip               |  models.CharField(max_length=100)
+
+
+Item:
+
+Key   | Value 
+----- | ------
+title | models.CharField(max_length=120)
+price | models.FloatField(2)
+discount_price | models.FloatField(blank=True, null=True)
+category | models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+label | models.CharField(choices=LABEL_CHOICES, max_length=1)
+slug  | models.SlugField()
+description | models.TextField()
+image | models.FileField(upload_to='product_image', null=True)
+additional_information | models.TextField(null=True)
+
 
 ## Design
 Colours picked for this project where carefully selected even though it might look like the home page is overloaded with dark colours it was done on purpouse,
 to contrast rather bright colours of the entire range of products.
 ![](/static/img/images/c.scheme.png)
 
+Typography 
+
+Two fonts from [Google Fonts](
+Google Fontshttps://fonts.google.com) where used fro the project Helvetica and Roboto.
+
 Icons used in this project comes from [FontAwesome](https://fontawesome.com/)
 
+# Features
+
+Home Page 
+
+- The home page display slideshow with descriptice images and headings which could be updated by the 
+administrator of the page depends on requireents. 
+- home page presents minimalistic design with the newest product offers display on th ecarousel
+ with call to action button placed in the center of the page to engage with user.
+
+Store Page
+
+- On the store page user can view details of the product, which contains:
+    • image of the product
+    • brand 
+    • category 
+    • label 
+    • price
+- on the second navbar user has opportunity to search for the product by name or category, 
+once the card with the product is selected, user is rdirected to the product page.
+
+Product Page
+
+- On the product page user is presented with full description of the item, 
+- two buttons on the page are giving an option to the user to add 
+or remove item from the cart
+- in the buttom part of the page there is a space for aditional info about the product 
+or promotional materials, 
+
+Cart Page
+
+- Once item is selected user is redirected to order summary page 
+- on the page there are basic informations about the items choosen by user,
+ like list of products, quantity, total price 
+- two buttons continoue shooping and proceed to checkout placed below the order summary table,
+- depends on the user choice after choosing either option you will be redirected to the checkout or 
+store.
+
+Checkout Page
+
+- on the checkout page user summary of th eorder is presented along with checkout from to be filled in
+with required informations like address country zip codeonce th eform is filled in,
+user will be redirected to stripe payment form
+- once payment is submitted user will be redirected to success page where will be presented with information about 
+completion of the orther 
+
+
+## Features for further implementation
+
+- saving billing address details
+- profile paage 
+- more secure checkout form
+- abiblity to save order details 
+
+## Testing 
+
+
+
+
+
+
 # Tools Used 
+
 * Github
 * VS Code
 * Heroku 
@@ -120,6 +202,7 @@ Icons used in this project comes from [FontAwesome](https://fontawesome.com/)
 * [Font Awesome](https://fontawesome.com)
 
 # Credits
+
 ## Aknowledgements
 - This Site is for educational use.
 - I would like to thank all of my fiends and familly who have helped to test appllication and 
