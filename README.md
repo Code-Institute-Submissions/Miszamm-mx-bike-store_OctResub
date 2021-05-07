@@ -186,8 +186,50 @@ completion of the orther
 
 ## Testing 
 
+Python - All Python code was checked with  the [PEP8](http://pep8online.com) online validator.
+and is PEP8 compiant except few line length flags.
 
 
+## Deployment
+
+Before deploying the application, make sure the following criteria are reached,
+so the following needs to be installed:
+- Pyhton3 
+- PIP
+- Git 
+- Heroku ClI
+Once the criteria above are reached then account for Stripe and Amazon have to be created as well.
+In both cases multifactor authentication is recomended.
+
+### Local Deployment
+
+1. From the application repository in GitHub click the "code" button and download zip file of the repository.
+2. Access the folder in terminal window and install the application's required modules with 
+` python -m pip -r requirements.txt
+`
+3. Create  a file with your environmental variables called env.py at the root level of the application.
+4. SECRET_KEY has to be updated with your own secret key, as well as Stripe SECRET_KEY.
+5. In case of pushing the application to a public repository, make sure that your env.py file is added to .gitignore
+to secure your credentials.
+6. The application will be available in the browser at the port 8000. (http://localhost:8000), and to run locally 
+type command ` python3 manage.py runserver`.
+
+### Deployment to Heroku
+
+1. Create new application in Heroku.
+2. From dashboard in Heroku click on "Deploy", followed by " Deployment method", to connect your application to github repository 
+select GitHub.
+3. In resources tab, navigate to add-ons section and find Heroku Postgress. Choose hobby level for this application.
+4. Click on the settings tab on the button labelled "Reveal Config Vars". The Postgress create a link to postgress database.
+5. After adding all variables to the application you can deploy the application in Heroku dashboard.
+6 To view the app, click "View App" button. 
+
+# Technologies
+- HTML
+- CSS 
+- Python
+- Django
+- JavaScript/jQuery
 
 
 
@@ -197,7 +239,6 @@ completion of the orther
 * VS Code
 * Heroku 
 * [Bootstrap MBD](https://mdbootstrap.com)
-* [Tiny PNG](https://tinypng.com)
 * [Google Fonts](https://fonts.google.com)
 * [Font Awesome](https://fontawesome.com)
 

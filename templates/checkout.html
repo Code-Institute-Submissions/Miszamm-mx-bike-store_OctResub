@@ -3,60 +3,34 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-  <!--Main layout-->
   <main>
     <div class="container wow fadeIn">
-
-      <!-- Heading -->
       <h2 class="my-5 h2 text-center">Checkout form</h2>
-
-      <!--Grid row-->
       <div class="row">
-
-        <!--Grid column-->
         <div class="col-md-8 mb-4">
-
-          <!--Card-->
           <div class="card">
-            <!--Card content-->
             <form id="checkout"  method="POST" class="card-body">
               {% csrf_token %}
-              <!--address-->
               <div class="md-form mb-5">
                 <input type="text" id="address" class="form-control">   
                 {{ form.apartment_address }}
-                <label for="address" class="">Apartment/house no.</label>
+                <label for="address" class="address" required>Apartment/house no.</label>
               </div>
-
-              <!--address-2-->
               <div class="md-form mb-5">
                 <input type="text" id="address-2" class="form-control">
                 {{ form.street_addres }}
-                <label for="address-2" class="">Address (optional)</label>
+                <label for="address-2" class="address">Address (optional)</label>
               </div>
-
-              <!--Grid row-->
               <div class="row">
-
-                <!--Grid column-->
                 <div class="col-lg-4 col-md-12 mb-4">
 
                   <label for="country">Country</label>
-                <!---  <select class="custom-select d-block w-100" id="country" required>
-                    <option value="">Choose...</option>
-                    <option>United States</option>
-                  </select> -->
                   {{ form.country }}
                   <div class="invalid-feedback">
                     Please select a valid country.
                   </div>
-
                 </div>
-                <!--Grid column--> 
-
-                <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
-
                   <label for="zip">Zip</label>
                 <!---      <input type="text" class="form-control" id="zip" placeholder="" required>--->
                 {{ form.zip }}  
@@ -67,21 +41,15 @@
               </div>
 
               <hr class="mb-4">
-             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue To Payment</button>
-             
+             <button class="btn btn-primary btn-lg btn-block" type="submit">Continue To Payment</button>   
             </form>
           </div>
         </div>
         <div class="col-md-4 mb-4">
-
-          <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Your cart</span>
             <span class="badge badge-secondary badge-pill">3</span>
           </h4>
-
-          <!-- Cart -->
-
           <ul class="list-group mb-3 z-depth-1">
               {% for order_item in object.items.all %}
             <li class="list-group-item d-flex justify-content-between lh-condensed">
@@ -98,20 +66,10 @@
               <strong>{{ object.get_total }}</strong>
             </li>
           </ul>
-          <!-- Cart -->
         </div>
-        <!--Grid column-->
-
       </div>
-      <!--Grid row-->
-
     </div>
   </main>
-
-
-
-
- 
  
   {% endblock content %} 
 
