@@ -189,6 +189,14 @@ completion of the orther
 Python - All Python code was checked with  the [PEP8](http://pep8online.com) online validator.
 and is PEP8 compiant except few line length flags.
 
+HTML - all pages were run though [W3C HTML Validator](https://validator.w3.org). Two errors were detected 
+unourtunatelly, they are not corrected yet.
+
+CSS validation with the [W3C Jigsaw Validator](https://jigsaw.w3.org/) returned some expected errors from vendor extensions. Code written by me tested by direct input didn' show any errors.
+Which means the code is compliant with W3C standards. 
+
+Extensive testing through out all pages was carryd out and there is still good few small and bigger issues to solve, 
+The general functionality ofthe page is working, morre security implementations needs to be added.
 
 ## Deployment
 
@@ -252,3 +260,9 @@ and came back with constructive feedback
  and a lot of doubts took over my head. I'm really greatfull for your understanding and motivation. Quite possibly 
  it was one of the best decission I've ever made despite all the odds. 
 - I would like to thank Felipe Alarcon who was always there with his valuable feedback, and motivation. 
+- I would like to thank Code Camp for fantastic Django E-commerce tutorial which i based my project on.
+Unfortunately my project is not fully finished so as readme.md file. Specially testing and debugging part.
+I went true many unexpected challenges working on this project and i would like to thank you to all people who 
+helped me to overcome not only technicall battles but mostlly the menthal ones. Because i doubted myself a lot.
+This project is far from what we have learned during the Walkthrough project we have done in the course but it 
+brought me a lot of experience in problem solving.

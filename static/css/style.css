@@ -71,7 +71,7 @@ body {
     padding-bottom: 20px;
     color: #283350;
     background: linear-gradient(to right, #ffb500 0%, #f93800 100%);
-    -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
