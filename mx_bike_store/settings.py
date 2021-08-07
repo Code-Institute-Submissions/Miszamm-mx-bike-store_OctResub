@@ -194,3 +194,10 @@ if development:
     SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu03.gitpod.io'
 else:
     SITE_DOMAIN = 'https://misza-django-mx-bike-store-app.herokuapp.com'
+
+
+EMAIL_HOST = 'smtp.zoho.eu'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'miszamm@zohomail.eu'
+EMAIL_HOST_PASSWORD = 'q!BU89JDqvXv!58'
+EMAIL_USE_SSL = True
