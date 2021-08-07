@@ -17,7 +17,7 @@ from django.conf import settings
 class CheckoutView(View):
     def get(self, *args, **kwargs):
         order = Order.objects.filter(user=self.request.user, ordered=False).first()
-        form = CheckoutForm()
+        form = CheckoutForm(use_required_attribute=False)
         context = {
             'form': form,
             'object': order             
@@ -28,6 +28,10 @@ class CheckoutView(View):
         form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
+            context = {
+                'form': form,
+                'object': order             
+            }
             if form.is_valid():
                 street_address = form.cleaned_data.get('street_addres')
                 apartment_address = form.cleaned_data.get('apartment_address')
@@ -57,7 +61,8 @@ class CheckoutView(View):
                 return redirect('payment')
             print(form.errors)
             messages.warning(self.request, "Failed checkout")
-            return redirect('checkout')
+            # return redirect('checkout')
+            return render(self.request, "checkout.html", context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("order-summary")

@@ -11,6 +11,7 @@
           <div class="card">
             <form id="checkout"  method="POST" class="card-body">
               {% csrf_token %}
+              {{ form.as_p }}
               <div class="md-form mb-5">
                 <input type="text" id="address" class="form-control">   
                 {{ form.apartment_address }}
@@ -18,7 +19,8 @@
               </div>
               <div class="md-form mb-5">
                 <input type="text" id="address-2" class="form-control">
-                {{ form.street_addres }}
+                {{ form.street_address }}
+                {{ form.street_address.errors }}
                 <label for="address-2" class="address">Address (optional)</label>
               </div>
               <div class="row">
