@@ -7,7 +7,7 @@ def contact(request):
         'Subject here',
         'Here is the message.',
         'miszamm@zohomail.eu',
-        ['c00242566@itcarlow.ie'],
+        ['miszamm@yahoo.ie'],
         fail_silently=False,
     )
     return render(request, 'contact.html')
