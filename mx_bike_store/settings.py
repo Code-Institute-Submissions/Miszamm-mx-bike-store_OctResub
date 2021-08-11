@@ -194,7 +194,7 @@ else:
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DAFAULT_FROM_EMAIL = 'mx-bike-store@example.com'
+    DAFAULT_FROM_EMAIL = 'michalmiszamm@gmail.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
