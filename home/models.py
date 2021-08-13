@@ -46,6 +46,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    category2 = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     sku = models.CharField(max_length=140, blank=True, null=True)
     title = models.CharField(max_length=140)
     price = models.DecimalField(max_digits=6, decimal_places=2)

@@ -22,7 +22,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         'friendly_title',
         'title',
-    )
+   )
 
 
 admin.site.register(Item, ItemAdmin)
