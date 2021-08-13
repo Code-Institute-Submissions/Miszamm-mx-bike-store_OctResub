@@ -87,18 +87,21 @@ class OrderSummaryView(LoginRequiredMixin, View):
 
 
 @login_required
-def add_to_cart(request, slug):
+def add_to_cart(request, slug, quantity):
     item = get_object_or_404(Item, slug=slug)
     order_item, created = OrderItem.objects.get_or_create(
         item=item,
         user=request.user,
-        ordered=False
+        ordered=False,
+        quantity=quantity
     )
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            order_item.quantity += 1
+            print(order_item.quantity)
+            order_item.quantity += quantity
+            print(order_item.quantity)
             order_item.save()
             messages.info(request, "Item quantity was updated succesfully")
             return redirect("order-summary")

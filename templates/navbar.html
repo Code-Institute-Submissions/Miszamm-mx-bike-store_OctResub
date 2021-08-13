@@ -24,7 +24,10 @@
           </li>
         </ul>
         <ul class="navbar-nav nav-flex-icons">
-          {% if request.user.is_authenticated %}  
+          {% if request.user.is_authenticated %}
+              {% if requested.user.is_superuser%}
+                  <a href="" class="nav-link waves-effect">Product Management</a>
+              {% endif %}  
           <li class="nav-item">
             <a href="{% url 'order-summary' %}" class="nav-link waves-effect">
               <span class="badge red z-depth-1 mr-1">{{ request.user|cart_item_count }} </span>
