@@ -51,12 +51,13 @@ class Order(models.Model):
 
 
 class BillingAddress(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     street_address = models.CharField(max_length=100)
-    apartment_address = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    county = models.CharField(max_length=100)
     country = CountryField(multiple=False)
     zip = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.user.username
+        return self.first_name + ' ' + self.last_name

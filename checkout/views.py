@@ -33,28 +33,26 @@ class CheckoutView(View):
                 'object': order             
             }
             if form.is_valid():
-                street_address = form.cleaned_data.get('street_addres')
-                apartment_address = form.cleaned_data.get('apartment_address')
+                first_name = form.cleaned_data.get('first_name')
+                last_name = form.cleaned_data.get('last_name')
+                street_address = form.cleaned_data.get('street_address')
+                city = form.cleaned_data.get('city')
+                county = form.cleaned_data.get('county')
                 country = form.cleaned_data.get('country')
                 zip = form.cleaned_data.get('zip')
                 # Functionality for those fields needs to be added
                 #   same_shipping_address = form.cleaned_data.get(
                 #       'same_shipping_address')
             #   save_info = form.cleaned_data.get('save_info')
-                billing_address = BillingAddress.objects.filter(user=self.request.user).first()
-                if not billing_address:
-                    billing_address = BillingAddress(
-                        user=self.request.user,
+                billing_address = BillingAddress(
+                        first_name=first_name,
+                        last_name=last_name,
                         street_address=street_address,
-                        apartment_address=apartment_address,
+                        city=city,
+                        county=county,
                         country=country,
                         zip=zip
                     )
-                else:
-                    billing_address.street_address = street_address
-                    billing_address.apartment_address = apartment_address
-                    billing_address.country = country
-                    billing_address.zip = zip
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()       
@@ -87,25 +85,25 @@ class OrderSummaryView(LoginRequiredMixin, View):
 
 
 @login_required
-def add_to_cart(request, slug, quantity):
+def add_to_cart(request, slug):
     item = get_object_or_404(Item, slug=slug)
-    order_item, created = OrderItem.objects.get_or_create(
-        item=item,
-        user=request.user,
-        ordered=False,
-        quantity=quantity
-    )
+    quantity = int(request.GET.get('quantity', 1))
     order_qs = Order.objects.filter(user=request.user, ordered=False)
     if order_qs.exists():
         order = order_qs[0]
         if order.items.filter(item__slug=item.slug).exists():
-            print(order_item.quantity)
-            order_item.quantity += quantity
-            print(order_item.quantity)
-            order_item.save()
+            cart_item = order.items.get(item__slug=item.slug)
+            cart_item.quantity += quantity
+            cart_item.save()
             messages.info(request, "Item quantity was updated succesfully")
             return redirect("order-summary")
         else:
+            order_item, created = OrderItem.objects.get_or_create(
+                item=item,
+                user=request.user,
+                ordered=False,
+                quantity=quantity
+            )
             order.items.add(order_item)
             messages.info(request, "Item was added to your cart succesfully")
             return redirect("order-summary")
@@ -113,6 +111,12 @@ def add_to_cart(request, slug, quantity):
         ordered_date = timezone.now()
         order = Order.objects.create(
             user=request.user, ordered_date=ordered_date)
+        order_item, created = OrderItem.objects.get_or_create(
+            item=item,
+            user=request.user,
+            ordered=False,
+            quantity=quantity
+        )
         order.items.add(order_item)
         messages.info(request, "Item was remove from cart succesfully")
         return redirect("order-summary")
