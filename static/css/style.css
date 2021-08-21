@@ -135,3 +135,7 @@ p.sub-title {
     cursor: pointer;
 }
 
+p.text-muted{
+    color:#ffb500;
+    text-transform: uppercase;
+}
