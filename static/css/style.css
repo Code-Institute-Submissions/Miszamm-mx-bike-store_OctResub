@@ -1,4 +1,4 @@
-body {
+/body {
     background-color: #f5f5f5;
     margin: 0px;
     height: 80vh;
@@ -134,3 +134,4 @@ p.sub-title {
     width: 200px;
     cursor: pointer;
 }
+

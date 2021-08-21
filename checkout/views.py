@@ -39,7 +39,7 @@ class CheckoutView(View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'form': form,
-                'object': order           
+                'object': order    
             }
             if form.is_valid():
                 first_name = form.cleaned_data.get('first_name')
@@ -70,11 +70,11 @@ class CheckoutView(View):
                             county=county,
                             country=country,
                             zip=zip,
-                            user=request.user
+                            user=request.user,
                             )
                 billing_address.save()
                 order.billing_address = billing_address
-                order.save()       
+                order.save()
                 return redirect('payment')
             print(form.errors)
             messages.warning(self.request, "Failed checkout")
@@ -239,7 +239,7 @@ def create_checkout_session(request):
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            line_items=line_items,  
+            line_items=line_items,
             mode='payment',
             success_url=settings.SITE_DOMAIN + '/checkout/success?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=settings.SITE_DOMAIN + '/cancel.html',
