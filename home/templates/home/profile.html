@@ -1,0 +1,16 @@
+{{ user.email }}
+{% for order in user.order_set.all %}
+{% if order.ordered %}
+{{ order.id }}
+    {{ order.ordered_date }}
+{% for item in order.items.all %}
+{{ item.quantity }}
+    {{ item.item.title }}
+    {{ item.item.price }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+<form action="" method="post">{{ form.as_p }}
+    {% csrf_token %}
+    <button>Submit</button>
+</form>

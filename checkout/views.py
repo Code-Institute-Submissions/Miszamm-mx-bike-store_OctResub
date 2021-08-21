@@ -12,12 +12,17 @@ from .forms import CheckoutForm
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.forms.models import model_to_dict
 
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
+        try:
+            billing_address = BillingAddress.objects.get(user=self.request.user)
+        except BillingAddress.DoesNotExist:
+            billing_address = None
         order = Order.objects.filter(user=self.request.user, ordered=False).first()
-        form = CheckoutForm(use_required_attribute=False)
+        form = CheckoutForm(use_required_attribute=False, initial=model_to_dict(billing_address))
         context = {
             'form': form,
             'object': order             
@@ -25,12 +30,16 @@ class CheckoutView(View):
         return render(self.request, "checkout.html", context)
 
     def post(self, *args, **kwargs):
+        try:
+            billing_address = BillingAddress.objects.get(user=self.request.user)
+        except BillingAddress.DoesNotExist:
+            billing_address = None
         form = CheckoutForm(self.request.POST or None)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'form': form,
-                'object': order             
+                'object': order           
             }
             if form.is_valid():
                 first_name = form.cleaned_data.get('first_name')
@@ -43,16 +52,26 @@ class CheckoutView(View):
                 # Functionality for those fields needs to be added
                 #   same_shipping_address = form.cleaned_data.get(
                 #       'same_shipping_address')
-            #   save_info = form.cleaned_data.get('save_info')
-                billing_address = BillingAddress(
-                        first_name=first_name,
-                        last_name=last_name,
-                        street_address=street_address,
-                        city=city,
-                        county=county,
-                        country=country,
-                        zip=zip
-                    )
+                #   save_info = form.cleaned_data.get('save_info')
+                if billing_address:
+                    billing_address.first_name = first_name
+                    billing_address.last_name = last_name
+                    billing_address.street_address = street_address
+                    billing_address.city = city
+                    billing_address.county = county
+                    billing_address.country = country
+                    billing_address.zip = zip
+                else:
+                    billing_address = BillingAddress(
+                            first_name=first_name,
+                            last_name=last_name,
+                            street_address=street_address,
+                            city=city,
+                            county=county,
+                            country=country,
+                            zip=zip,
+                            user=request.user
+                            )
                 billing_address.save()
                 order.billing_address = billing_address
                 order.save()       

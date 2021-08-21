@@ -51,6 +51,10 @@ class Order(models.Model):
 
 
 class BillingAddress(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     street_address = models.CharField(max_length=100)

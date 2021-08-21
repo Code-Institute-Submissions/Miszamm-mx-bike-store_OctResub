@@ -188,7 +188,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'mx-store'
 
 if development:
-    SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu03.gitpod.io'
+    SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu16.gitpod.io'
 else:
     SITE_DOMAIN = 'https://misza-django-mx-bike-store-app.herokuapp.com'
 
