@@ -25,7 +25,7 @@ class CheckoutView(View):
         form = CheckoutForm(use_required_attribute=False, initial=model_to_dict(billing_address))
         context = {
             'form': form,
-            'object': order             
+            'object': order,   
         }
         return render(self.request, "checkout.html", context)
 
@@ -39,7 +39,7 @@ class CheckoutView(View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'form': form,
-                'object': order    
+                'object': order,   
             }
             if form.is_valid():
                 first_name = form.cleaned_data.get('first_name')

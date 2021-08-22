@@ -80,7 +80,7 @@ def profile(request):
                         user=request.user
                         )
             billing_address.save()
-            return redirect('profile') 
+            return redirect('profile')
     form = CheckoutForm(initial=model_to_dict(billing_address))
     context = {
        'form': form

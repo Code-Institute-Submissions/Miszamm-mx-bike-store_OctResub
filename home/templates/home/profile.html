@@ -28,6 +28,7 @@
                 {% for item in order.items.all %}
                 <ol>
                     <li>
+                        {{ order.id }}
                         {{ order.ordered_date }}
                         {{ item.quantity }}
                         {{ item.item.title }}
