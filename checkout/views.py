@@ -19,13 +19,15 @@ class CheckoutView(View):
     def get(self, *args, **kwargs):
         try:
             billing_address = BillingAddress.objects.get(user=self.request.user)
+            initial_data = model_to_dict(billing_address)
         except BillingAddress.DoesNotExist:
             billing_address = None
+            initial_data = {}
         order = Order.objects.filter(user=self.request.user, ordered=False).first()
-        form = CheckoutForm(use_required_attribute=False, initial=model_to_dict(billing_address))
+        form = CheckoutForm(use_required_attribute=False, initial=initial_data)
         context = {
             'form': form,
-            'object': order,   
+            'object': order,
         }
         return render(self.request, "checkout.html", context)
 
@@ -39,7 +41,7 @@ class CheckoutView(View):
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
                 'form': form,
-                'object': order,   
+                'object': order,
             }
             if form.is_valid():
                 first_name = form.cleaned_data.get('first_name')
@@ -186,7 +188,8 @@ def remove_from_cart(request, slug):
                 ordered=False
             )[0]
             order.items.remove(order_item)
-            messages.info(request, "Item was removed from your cart sucesfully")
+            messages.info(
+                request, "Item was removed from your cart sucesfully")
             return redirect("product", slug=slug)
         else:
             messages.info(request, "This item was not in your cart")
@@ -215,6 +218,8 @@ import os
 
 
 import stripe
+
+
 # This is your real test secret API key.
 stripe.api_key = 'sk_test_51IUTHGAWMAUBj98U84CnKpfmV44EmBSxWGQAVeuwDr0ECfVlvdT9ImT3ZSdtfnRVtDwx6iCUxnEt0twSXu9lu1Th002CTlLLDB'
 

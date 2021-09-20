@@ -55,11 +55,11 @@ class BillingAddress(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    street_address = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
-    county = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, blank=False, null=False)
+    last_name = models.CharField(max_length=100, blank=False, null=False)
+    street_address = models.CharField(max_length=100, blank=False, null=False)
+    city = models.CharField(max_length=100, blank=False, null=False)
+    county = models.CharField(max_length=100, blank=False, null=False)
     country = CountryField(multiple=False)
     zip = models.CharField(max_length=100)
 
