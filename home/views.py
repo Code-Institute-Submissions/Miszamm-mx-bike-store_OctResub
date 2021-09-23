@@ -8,6 +8,9 @@ from checkout.forms import CheckoutForm
 from checkout.models import BillingAddress
 from django.forms.models import model_to_dict
 
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
+
 
 def products(request):
     context = {
@@ -48,8 +51,10 @@ class ShopView(ListView):
 def profile(request):
     try:
         billing_address = BillingAddress.objects.get(user=request.user)
+        initial_data = model_to_dict(billing_address)
     except BillingAddress.DoesNotExist:
         billing_address = None
+        initial_data = {}
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
@@ -81,8 +86,38 @@ def profile(request):
                         )
             billing_address.save()
             return redirect('profile')
-    form = CheckoutForm(initial=model_to_dict(billing_address))
+    form = CheckoutForm(initial=initial_data)
     context = {
        'form': form
     }
     return render(request, "home/profile.html", context)
+
+ 
+class AdminProductList(ListView):
+    model = Item
+    paginate_by = 8
+    template_name = "admin_product_list.html"
+
+
+class AdminProductCreateView(CreateView):
+    model = Item
+    fields = [
+            'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
+            'image', 'additional_information'
+        ]
+    template_name = "admin_product_create.html"
+    success_url = reverse_lazy('admin_product_list')
+
+class AdminProductUpdateView(UpdateView):
+    model = Item
+    fields = [
+            'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
+            'image', 'additional_information'
+        ]
+    template_name = "admin_product_create.html"
+    success_url = reverse_lazy('admin_product_list')
+
+class AdminProductDeleteView(DeleteView):
+    model = Item
+    template_name = "admin_product_delete.html"
+    success_url = reverse_lazy('admin_product_list')
