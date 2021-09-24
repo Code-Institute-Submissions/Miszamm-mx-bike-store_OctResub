@@ -46,12 +46,10 @@
             {% for item in object_list %}
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    <div class="view overlay">
+                    <div class="">
                         <img src="{{ MEDIA_URL }}{{ item.image }}" class="card-img-top"
                             alt="">
-                        <a href="{% url 'admin_product-update' item.id %}">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
+                        
                     </div>
                     <div class="card-body text-center">
                         <a href="" class="grey-text">
@@ -63,7 +61,7 @@
                                     <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
                                 </a>
                             </strong>
-                            <a href="{% url 'admin_product-delete' item.id %}">Delete</a>
+                  
                         </h5>
                         <h4 class="font-weight-bold blue-text">
                             <strong>$
@@ -73,7 +71,9 @@
                                 {{ item.price }}
                                 {% endif %}
                             </strong>
+                            
                         </h4>
+                        <a href="{% url 'admin_product-delete' item.id %}">Delete</a>
                     </div>
                 </div>
             </div>

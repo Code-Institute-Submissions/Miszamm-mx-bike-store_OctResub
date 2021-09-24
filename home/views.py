@@ -7,6 +7,7 @@ from .models import Item, Carousel
 from checkout.forms import CheckoutForm
 from checkout.models import BillingAddress
 from django.forms.models import model_to_dict
+from .forms import AdminItemForm
 
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -101,23 +102,26 @@ class AdminProductList(ListView):
 
 class AdminProductCreateView(CreateView):
     model = Item
-    fields = [
-            'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
-            'image', 'additional_information'
-        ]
+    # fields = [
+    #        'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
+    #       'image', 'additional_information'
+    #    ]
     template_name = "admin_product_create.html"
     success_url = reverse_lazy('admin_product_list')
+    form_class = AdminItemForm
 
 class AdminProductUpdateView(UpdateView):
     model = Item
-    fields = [
-            'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
-            'image', 'additional_information'
-        ]
+    # fields = [
+    #        'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
+    #        'image', 'additional_information'
+    #    ]
     template_name = "admin_product_create.html"
     success_url = reverse_lazy('admin_product_list')
+    form_class = AdminItemForm
 
 class AdminProductDeleteView(DeleteView):
     model = Item
     template_name = "admin_product_delete.html"
     success_url = reverse_lazy('admin_product_list')
+    form_class = AdminItemForm
