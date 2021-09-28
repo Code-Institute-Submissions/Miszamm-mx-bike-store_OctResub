@@ -1,0 +1,11 @@
+You have received the following message from {{ name }}:
+
+{{ message }}
+
+
+Contact Information:
+
+Email: {{ email }}
+{% if phone %}
+Phone: {{ phone }}
+{% endif %}

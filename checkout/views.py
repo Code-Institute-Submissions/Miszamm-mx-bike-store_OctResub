@@ -190,13 +190,13 @@ def remove_from_cart(request, slug):
             order.items.remove(order_item)
             messages.info(
                 request, "Item was removed from your cart sucesfully")
-            return redirect("product", slug=slug)
+            return redirect("order-summary")
         else:
             messages.info(request, "This item was not in your cart")
-            return redirect("product", slug=slug)
+            return redirect("order-summary")
     else:
         messages.info(request, "You do not have an active order")
-        return redirect("product", slug=slug)
+        return redirect("order-summary")
 
 
 class SuccessView(View):

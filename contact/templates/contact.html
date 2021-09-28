@@ -33,30 +33,30 @@
   </nav> 
 
 <section class="get_in_touch"> 
-    <h1 class="title">Contact Us</h1>
+    <h2 class="logo-font mb-4">Contact Us</h2>
     <p class="sub-title">If you have any questions about our products range or demo testing days, we would love to hear from you. Please fill the
      following form to get in touch.</p>
     <form class="container" action="{% url 'contact' %}" method="POST">
         {% csrf_token %}
         <div class="contact-form row">
             <div class="form-group" col-lg-6>
-                <input id="name" class="input-text" type="text" name="Name" required>
+                <input id="name" class="input-text" type="text" name="name" required>
                 <label for="name" class="label">Name</label>
             </div>
             <div class="form-group" col-lg-6>
-                <input id="email" class="input-text" type="email" name="Email" required>
+                <input id="email" class="input-text" type="email" name="email" required>
                 <label for="email" class="label">Email</label>
             </div>
             <div class="form-group" col-lg-6>
-                <input id="company" class="input-text" type="company" name="Company">
+                <input id="company" class="input-text" type="company" name="company">
                 <label for="company" class="label">Company Name</label>
             </div>
             <div class="form-group" col-lg-6>
-                <input id="phone" class="input-text" type="text" name="Phone" required>
+                <input id="phone" class="input-text" type="text" name="phone" required>
                 <label for="phone" class="label">Contact Number</label>
             </div>
             <div class="form-group" col-lg-12>
-                <input id="message" class="input-text" type="text" name="Message">
+                <input id="message" class="input-text" type="text" name="message">
                 <label for="message" class="label">Message</label>
             </div>   
             <div class="form-group" col-lg-12>
