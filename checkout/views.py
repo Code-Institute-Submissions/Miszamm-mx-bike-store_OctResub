@@ -216,7 +216,6 @@ class SuccessView(View):
 
 import os
 
-
 import stripe
 
 

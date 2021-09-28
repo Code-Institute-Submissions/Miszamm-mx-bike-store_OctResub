@@ -25,10 +25,12 @@ def contact(request):
         to_email = settings.DEFAULT_ORDER_EMAIL
         contact_email = request.POST['email']
         phone = request.POST['phone']
+        company = request.POST['company']
         message = request.POST['message']
         name = request.POST['name']
 
         email_context = {
+            'company': company,
             'name': name,
             'phone': phone,
             'message': message,
@@ -37,7 +39,7 @@ def contact(request):
 
         subject = render_to_string(
             'contact_emails/contact_email_subject.txt',
-            {'name': name}
+            {'company': company}
         )
         body = render_to_string(
             'contact_emails/contact_email_body.txt', email_context
@@ -51,7 +53,7 @@ def contact(request):
             [to_email],
         )
 
-        messages.success(request, "Your message wassent succesfully. You will hear fromm us soon")
+        messages.success(request, "Your message was sent succesfully. You will hear from us soon.")
         return redirect(reverse('home'))
 
     template = 'contact.html'

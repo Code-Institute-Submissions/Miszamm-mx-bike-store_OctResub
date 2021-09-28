@@ -62,18 +62,6 @@ body {
     padding: 30px;
 }
 
-.get_in_touch .title {
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 3px;
-    font-size: 3em;
-    line-height: 44px;
-    padding-bottom: 20px;
-    color: #283350;
-    background: linear-gradient(to right, #ffb500 0%, #f93800 100%);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
 
 h1.title {
     text-transform: uppercase;
@@ -129,18 +117,6 @@ p.sub-title {
     transition: transform 0.3s ease-in-out;
 }
 
-.contact-form .submit-btn{
-    display: inline-block;
-    background-image: linear-gradient(125deg, #ffb500,#f93800);
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 16px;
-    letter-spacing: 2px;
-    padding: 8px 16px;
-    border: none;
-    width: 200px;
-    cursor: pointer;
-}
 
 p.text-muted{
     color:#ffb500;
