@@ -117,6 +117,10 @@ p.sub-title {
     transition: transform 0.3s ease-in-out;
 }
 
+input.form-control-sm {
+    margin-top: 6px;
+}
+
 
 p.text-muted{
     color:#ffb500;

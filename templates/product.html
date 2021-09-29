@@ -32,30 +32,40 @@
                     <p class="lead font-weight-bold">Description</p>
 
                     <p>{{ object.description }}</p>
-                    <form action="{% url 'add-to-cart' object.slug %}">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default btn-number" disabled="disabled"
-                                data-type="minus" data-field="quantity">
-                                <span class="fa fa-minus-circle"></span>
-                            </button>
-                        </span>
-                        <input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="10">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default btn-number" data-type="plus"
-                                data-field="quantity">
-                                <span class="fa fa-plus-circle"></span>
-                            </button>
-                        </span>
-                    </div>
-                    <button class="btn btn-primary btn-md my-0">
-                        Add to cart
-                        <i class="fas fa-shopping-cart ml-1"></i>
-                    </button>
-                    </form>
-                </div>
-
+                        <form class="form-update-form" action="{% url 'add-to-cart' object.slug %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button"
+                                            class="btn btn-sm btn-default btn-number btn-black rounded-0"
+                                            disabled="disabled" data-type="minus" data-field="quantity">
+                                            <span>
+                                                <i class="fa fa-minus fa-sm"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <input type="number" name="quantity" class="form-control-sm input-number" value="1"
+                                        min="1" max="10">
+                                    <div class="input-group-append">
+                                        <button type="button"
+                                            class="btn btn-sm btn-default btn-number btn-black rounded-0"
+                                            data-type="plus" data-field="quantity">
+                                            <span>
+                                                <i class="fa fa-plus fa-sm"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <button class="btn btn-black btn-md my-0">
+                                    Add to cart
+                                    <i class="fas fa-shopping-cart ml-1"></i>
+                                </button>
+                            </div>
+                        
+                        </form>
             </div>
+        </div>
         </div>
         <hr>
         <div class="row d-flex justify-content-center wow fadeIn">
