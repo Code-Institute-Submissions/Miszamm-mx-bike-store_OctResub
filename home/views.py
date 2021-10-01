@@ -93,7 +93,7 @@ def profile(request):
     }
     return render(request, "home/profile.html", context)
 
- 
+
 class AdminProductList(ListView):
     model = Item
     paginate_by = 8
@@ -102,13 +102,10 @@ class AdminProductList(ListView):
 
 class AdminProductCreateView(CreateView):
     model = Item
-    # fields = [
-    #        'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
-    #       'image', 'additional_information'
-    #    ]
     template_name = "admin_product_create.html"
     success_url = reverse_lazy('admin_product_list')
     form_class = AdminItemForm
+
 
 class AdminProductUpdateView(UpdateView):
     model = Item
@@ -119,6 +116,7 @@ class AdminProductUpdateView(UpdateView):
     template_name = "admin_product_create.html"
     success_url = reverse_lazy('admin_product_list')
     form_class = AdminItemForm
+
 
 class AdminProductDeleteView(DeleteView):
     model = Item

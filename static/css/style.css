@@ -157,3 +157,11 @@ p.text-muted{
     background: black;
     color: white !important;
 }
+
+@media (max-width: 991px) {
+    .btn.btn-outline-black.rounded-0,
+    .btn.btn-black.rounded-0 {
+        padding: .375rem .375rem;
+        font-size: .75rem;
+    }
+}

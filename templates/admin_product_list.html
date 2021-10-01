@@ -31,7 +31,7 @@
               <a class="nav-link" href="?category=A">Accessories</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'admin_product-add' %}">Create</a>
+                <a class="nav-link" href="{% url 'admin_product-add' %}">Add New Product</a>
               </li>
           </ul>
           <form class="form-inline" method="GET">
@@ -57,11 +57,10 @@
                         </a>
                         <h5>
                             <strong>
-                                <a href="{% url 'admin_product-update' item.id %}" class="dark-grey-text">{{ item.title }}
+                                <a href="{% url 'admin_product-add' %}" class="dark-grey-text">{{ item.title }}
                                     <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
                                 </a>
-                            </strong>
-                  
+                            </strong>                
                         </h5>
                         <h4 class="font-weight-bold blue-text">
                             <strong>$
@@ -70,10 +69,10 @@
                                 {% else %}
                                 {{ item.price }}
                                 {% endif %}
-                            </strong>
-                            
+                            </strong>                           
                         </h4>
-                        <a href="{% url 'admin_product-delete' item.id %}">Delete</a>
+                        <a class="text-warning" href="">Update</a>
+                        <a class="text-danger" href="{% url 'admin_product-delete' item.id %}">Delete</a>
                     </div>
                 </div>
             </div>

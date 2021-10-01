@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 
 {% block content%}
-
-  
   <main>
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark lighten-3 mt-3 mb-5">
@@ -39,41 +37,40 @@
         </div>
       </nav>
       <section class="text-center mb-4">
-        <div class="row wow fadeIn">    
-            {% for item in object_list %}
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card">
-                    <div class="view overlay">
-                        <img src="{{ MEDIA_URL }}{{ item.image }}" class="card-img-top"
-                            alt="">
-                        <a href="{% url 'product' item.slug %}">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <div class="card-body text-center">
-                        <a href="" class="grey-text">
-                            <h5>{{ item.get_category_display }}</h5>
-                        </a>
-                        <h5>
-                            <strong>
-                                <a href="{% url 'product' item.slug %}" class="dark-grey-text">{{ item.title }}
-                                    <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
-                                </a>
-                            </strong>
-                        </h5>
-                        <h4 class="font-weight-bold blue-text">
-                            <strong>$
-                                {% if item.discount_price %}
-                                {{ item.discount_price }}
-                                {% else %}
-                                {{ item.price }}
-                                {% endif %}
-                            </strong>
-                        </h4>
-                    </div>
-                </div>
+        <div class="row wow fadeIn">
+          {% for item in object_list %}
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card">
+              <div class="view overlay">
+                <img src="{{ MEDIA_URL }}{{ item.image }}" class="card-img-top" alt="">
+                <a href="{% url 'product' item.slug %}">
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+              <div class="card-body text-center">
+                <a href="" class="grey-text">
+                  <h5>{{ item.get_category_display }}</h5>
+                </a>
+                <h5>
+                  <strong>
+                    <a href="{% url 'product' item.slug %}" class="dark-grey-text">{{ item.title }}
+                      <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
+                    </a>
+                  </strong>
+                </h5>
+                <h4 class="font-weight-bold blue-text">
+                  <strong>$
+                    {% if item.discount_price %}
+                    {{ item.discount_price }}
+                    {% else %}
+                    {{ item.price }}
+                    {% endif %}
+                  </strong>
+                </h4>
+              </div>
             </div>
-            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
       </section>
       {% if is_paginated %}
@@ -93,7 +90,7 @@
               <span class="sr-only">(current)</span>
             </a>
           </li>
-         {% if page_obj.has_next %}
+          {% if page_obj.has_next %}
           <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
