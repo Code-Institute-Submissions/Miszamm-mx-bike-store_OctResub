@@ -67,10 +67,12 @@
           <ul class="list-group mb-3 z-depth-1">
             {% for order_item in object.items.all %}
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <img src="{{ MEDIA_URL }}{{ order_item.item.image }}" class="w-100" alt="image">
+              <div class="row">
+                  <div class="col-2 mb-1">
+                <img src="{{ MEDIA_URL }}{{ order_item.item.image }}" class="w-100 my-0" alt="image">
                 <h6 class="my-0">{{ order_item.item.title }}</h6>
                 <small class="text-muted">{{ order_item.quantity }}</small>
+              </div>
               </div>
               <span class="text-muted">${{ order_item.item.price }}</span>
             </li>
