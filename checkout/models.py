@@ -49,6 +49,12 @@ class Order(models.Model):
             total += order_item.get_final_price()
         return total
 
+    @property
+    def total_quantity(self):
+        queryset = self.items.all().aggregate(
+            total_quantity=models.Sum('quantity'))
+        return queryset["total_quantity"]
+
 
 class BillingAddress(models.Model):
     user = models.OneToOneField(

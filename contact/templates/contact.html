@@ -8,9 +8,8 @@
 <section class="get_in_touch">
     <hr>
         <h2 class="logo-font mb-4 text-center">Contact Us</h2>
-        <p class="sub-title">If you have any questions about our products range or demo testing days, we would love to hear
-        from you. Please fill the
-        following form to get in touch.</p>
+        <p class="sub-title">If you have any questions about our products range or demo testing days,
+             we would love to hear from you. Please fill the following form to get in touch.</p>
     <hr>
     <form class="container" action="{% url 'contact' %}" method="POST">
         {% csrf_token %}
@@ -31,6 +30,8 @@
                 <input id="phone" class="input-text" type="text" name="phone" required>
                 <label for="phone" class="label">Contact Number</label>
             </div>
+            <input type="radio" name="message_type" value="EN">Enquiry
+            <input type="radio" name="message_type" value="CO">Complain
             <div class="form-group" col-lg-12>
                 <input id="message" class="input-text" type="text" name="message">
                 <label for="message" class="label">Message</label>

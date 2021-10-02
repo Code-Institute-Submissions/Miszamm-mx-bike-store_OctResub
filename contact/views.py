@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
-
+from .models import Contact
 #  def contact(request):
 #    """
 #    This view handles the contact form
@@ -28,6 +28,16 @@ def contact(request):
         company = request.POST['company']
         message = request.POST['message']
         name = request.POST['name']
+        message_type = request.POST['message_type']
+        contact = Contact(
+            name=name,
+            email=contact_email,
+            company_name=company,
+            contact_number=phone,
+            message=message,
+            message_type=message_type,
+        )
+        contact.save()
 
         email_context = {
             'company': company,

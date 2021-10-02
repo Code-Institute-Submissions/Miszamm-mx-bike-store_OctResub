@@ -8,12 +8,12 @@
             <hr>
             <h2 class="logo-font mb-4">My Profile</h2>
             <hr>
-            {{ user.email }}
+            {{ user.first_name }}
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-lg-6">
-            <p class="text-muted">Update Your Innformation</p>
+            <p class="text-muted">Update Your  Billing Information</p>
             <form class="profile-update" action="{% url 'profile' %}" method="POST">
                 {{ form.as_p }}
                 {% csrf_token %}

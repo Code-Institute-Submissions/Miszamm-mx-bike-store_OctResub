@@ -57,7 +57,7 @@
                         </a>
                         <h5>
                             <strong>
-                                <a href="{% url 'admin_product-add' %}" class="dark-grey-text">{{ item.title }}
+                                <a href="{% url 'admin_product-update' item.id %}" class="dark-grey-text">{{ item.title }}
                                     <span class="badge badge-pill {{ item.get_label_display }}-color">NEW</span>
                                 </a>
                             </strong>                
@@ -71,7 +71,7 @@
                                 {% endif %}
                             </strong>                           
                         </h4>
-                        <a class="text-warning" href="">Update</a>
+                        <a class="text-warning" href="{% url 'admin_product-update' item.id %}">Update</a>
                         <a class="text-danger" href="{% url 'admin_product-delete' item.id %}">Delete</a>
                     </div>
                 </div>

@@ -72,7 +72,7 @@ class CheckoutView(View):
                             county=county,
                             country=country,
                             zip=zip,
-                            user=request.user,
+                            # user=request.user,
                             )
                 billing_address.save()
                 order.billing_address = billing_address
