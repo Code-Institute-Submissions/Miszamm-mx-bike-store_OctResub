@@ -16,22 +16,47 @@
               <div class="md-form mb-5">
                 {{ form.first_name }}
                 <label for="first_name" class="first_name" required>First Name</label>
+                {% if form.errors.first_name %}
+                <div class="invalid-feedback">
+                  Please write name.
+                </div>
+                {% endif %}
               </div>
               <div class="md-form mb-5">
                 {{ form.last_name }}
                 <label for="last_name" class="last_name" required>Last Name</label>
+                {% if form.errors.last_name %}
+                <div class="invalid-feedback">
+                  Please write you last name.
+                </div>
+                {% endif %}
               </div>
               <div class="md-form mb-5">
                 {{ form.street_address }}
                 <label for="street_address" class="street_address" required>Street Address</label>
+                {% if form.errors.street_address %}
+                <div class="invalid-feedback">
+                  Please tyoe address.
+                </div>
+                {% endif %}
               </div>
               <div class="md-form mb-5">
                 {{ form.city }}
                 <label for="city" class="city" required>City</label>
+                {% if form.errors.city %}
+                <div class="invalid-feedback">
+                  Please type City.
+                </div>
+                {% endif %}
               </div>
               <div class="md-form mb-5">
                 {{ form.county }}
                 <label for="county" class="county" required>County</label>
+                 {% if form.errors.county %}
+                <div class="invalid-feedback">
+                  Please choose a county.
+                </div>
+                {% endif %}
               </div>
               <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4">

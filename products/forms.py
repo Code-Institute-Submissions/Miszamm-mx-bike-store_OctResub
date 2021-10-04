@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Item
+from home.models import Item
 
 # Create the form class.
 

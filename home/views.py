@@ -7,10 +7,6 @@ from .models import Item, Carousel
 from checkout.forms import CheckoutForm
 from checkout.models import BillingAddress
 from django.forms.models import model_to_dict
-from .forms import AdminItemForm
-
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 
 def products(request):
@@ -26,27 +22,6 @@ class HomeView(ListView):
 
     def get_queryset(self):
         return Carousel.objects.filter(is_active=True).all()
-
-
-class ItemDetailView(DetailView):
-    model = Item
-    template_name = "product.html"
-
-
-class ShopView(ListView):
-    model = Item
-    paginate_by = 8
-    template_name = "shop.html"
-
-    def get_queryset(self):
-        category = self.request.GET.get('category')
-        q = Item.objects.all()
-        if category:
-            q = q.filter(category=category)
-        search = self.request.GET.get('search')
-        if search:
-            q = q.filter(title__icontains=search)
-        return q
 
 
 def profile(request):
@@ -92,34 +67,3 @@ def profile(request):
        'form': form
     }
     return render(request, "home/profile.html", context)
-
-
-class AdminProductList(ListView):
-    model = Item
-    paginate_by = 8
-    template_name = "admin_product_list.html"
-
-
-class AdminProductCreateView(CreateView):
-    model = Item
-    template_name = "admin_product_create.html"
-    success_url = reverse_lazy('admin_product_list')
-    form_class = AdminItemForm
-
-
-class AdminProductUpdateView(UpdateView):
-    model = Item
-    # fields = [
-    #        'category', 'sku', 'title', 'price', 'discount_price', 'label', 'slug', 'description',
-    #        'image', 'additional_information'
-    #    ]
-    template_name = "admin_product_create.html"
-    success_url = reverse_lazy('admin_product_list')
-    form_class = AdminItemForm
-
-
-class AdminProductDeleteView(DeleteView):
-    model = Item
-    template_name = "admin_product_delete.html"
-    success_url = reverse_lazy('admin_product_list')
-    form_class = AdminItemForm

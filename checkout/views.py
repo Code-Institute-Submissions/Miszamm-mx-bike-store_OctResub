@@ -29,14 +29,14 @@ class CheckoutView(View):
             'form': form,
             'object': order,
         }
-        return render(self.request, "checkout.html", context)
+        return render(self.request, "checkout/checkout.html", context)
 
     def post(self, *args, **kwargs):
         try:
             billing_address = BillingAddress.objects.get(user=self.request.user)
         except BillingAddress.DoesNotExist:
             billing_address = None
-        form = CheckoutForm(self.request.POST or None)
+        form = CheckoutForm(self.request.POST or None, use_required_attribute=False)
         try:
             order = Order.objects.get(user=self.request.user, ordered=False)
             context = {
@@ -78,10 +78,12 @@ class CheckoutView(View):
                 order.billing_address = billing_address
                 order.save()
                 return redirect('payment')
+            for field in form.errors:
+                form[field].field.widget.attrs['class'] += ' is-invalid'
             print(form.errors)
             messages.warning(self.request, "Failed checkout")
             # return redirect('checkout')
-            return render(self.request, "checkout.html", context)
+            return render(self.request, "checkout/checkout.html", context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("order-summary")
@@ -89,7 +91,7 @@ class CheckoutView(View):
 
 class PaymentView(View):
     def get(self, *args, **kwargs):
-        return render(self.request, "payment.html")
+        return render(self.request, "checkout/payment.html")
 
 
 class OrderSummaryView(LoginRequiredMixin, View):
@@ -99,7 +101,7 @@ class OrderSummaryView(LoginRequiredMixin, View):
             context = {
                 'object': order
             }
-            return render(self.request, 'order_summary.html', context)
+            return render(self.request, 'checkout/order_summary.html', context)
         except ObjectDoesNotExist:
             messages.error(self.request, "You do not have an active order")
             return redirect("/")
@@ -211,7 +213,7 @@ class SuccessView(View):
             'object': order,
             'customer_email': customer.email
         }
-        return render(self.request, "success.html", context)
+        return render(self.request, "checkout/success.html", context)
 
 
 import os
