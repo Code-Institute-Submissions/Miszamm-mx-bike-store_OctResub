@@ -72,7 +72,7 @@ class CheckoutView(View):
                             county=county,
                             country=country,
                             zip=zip,
-                            # user=request.user,
+                            #  user=request.user,
                             )
                 billing_address.save()
                 order.billing_address = billing_address
@@ -121,7 +121,7 @@ def add_to_cart(request, slug):
             messages.info(request, "Item quantity was updated succesfully")
             return redirect("order-summary")
         else:
-            order_item, created = OrderItem.objects.get_or_create(
+            order_item = OrderItem.objects.get_or_create(
                 item=item,
                 user=request.user,
                 ordered=False,

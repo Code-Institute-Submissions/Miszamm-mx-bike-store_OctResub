@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     HomeView,
-    profile,   
+    profile,
 )
 # app_name = 'home'
 

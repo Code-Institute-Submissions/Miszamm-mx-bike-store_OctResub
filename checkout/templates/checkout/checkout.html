@@ -24,10 +24,10 @@
               </div>
               <div class="md-form mb-5">
                 {{ form.last_name }}
-                <label for="last_name" class="last_name" required>Last Name</label>
+                <label class="last_name" for="last_name" required>Last Name</label>
                 {% if form.errors.last_name %}
                 <div class="invalid-feedback">
-                  Please write you last name.
+                  Please provide a last name.
                 </div>
                 {% endif %}
               </div>
@@ -36,7 +36,7 @@
                 <label for="street_address" class="street_address" required>Street Address</label>
                 {% if form.errors.street_address %}
                 <div class="invalid-feedback">
-                  Please tyoe address.
+                  Please provide valid address.
                 </div>
                 {% endif %}
               </div>
@@ -45,7 +45,7 @@
                 <label for="city" class="city" required>City</label>
                 {% if form.errors.city %}
                 <div class="invalid-feedback">
-                  Please type City.
+                  Please type city.
                 </div>
                 {% endif %}
               </div>
@@ -60,7 +60,6 @@
               </div>
               <div class="row">
                 <div class="col-lg-4 col-md-12 mb-4">
-
                   <label for="country">Country</label>
                   {{ form.country }}
                   <div class="invalid-feedback">
@@ -68,15 +67,13 @@
                   </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-4">
-                  <label for="zip">Zip</label>
-                <!---      <input type="text" class="form-control" id="zip" placeholder="" required>--->
+                  <label for="zip" required>Zip</label>
                 {{ form.zip }}  
                 <div class="invalid-feedback">
                     Post code required.
                   </div>
                 </div>
               </div>
-
               <hr class="mb-4">
              <button class="btn btn-black rounded-0 text-uppercase text-center" type="submit">Continue To Payment</button>   
             </form>
@@ -93,11 +90,15 @@
             {% for order_item in object.items.all %}
             <li class="list-group-item d-flex justify-content-between lh-condensed">
               <div class="row">
-                  <div class="col-2 mb-1">
-                <img src="{{ MEDIA_URL }}{{ order_item.item.image }}" class="w-100 my-0" alt="image">
-                <h6 class="my-0">{{ order_item.item.title }}</h6>
+                  
+                <h6 class="my-0"><strong>
+                  <a class="item-name" href="{% url 'product' order_item.item.slug %}">
+                    {{ order_item.item.title }}
+                  </a>
+                </strong></h6>
+                <img src="{{ MEDIA_URL }}{{ order_item.item.image }}" class="w-50 my-0" alt="image">
                 <small class="text-muted">{{ order_item.quantity }}</small>
-              </div>
+              
               </div>
               <span class="text-muted">${{ order_item.item.price }}</span>
             </li>

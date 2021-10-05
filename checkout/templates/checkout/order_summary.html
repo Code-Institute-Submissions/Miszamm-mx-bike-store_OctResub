@@ -6,8 +6,8 @@
     <div class="container">
         <div class="table-responsive text-nowrap">
             <h2>Order Summary</h2>
-            <table class="table">
-                <thead></thead>
+            <table class="table table-responsive-sm w-100">
+                <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Item Title</th>
@@ -21,7 +21,7 @@
                     <tr>
                         <th scope="row">{{ forloop.counter }}</th>
                         <td>
-                        <a href="{% url 'product' order_item.item.slug %}">
+                        <a class="item-name" href="{% url 'product' order_item.item.slug %}">
                             {{ order_item.item.title }}
                           </a>
                         </td>
@@ -49,8 +49,8 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                        <a class="btn-primary float-right ml-2" href='/'>Continue shopping</a>
-                    </td>
+                            <a class="btn-primary float-right ml-2" href='/'>Continue shopping</a>
+                        </td>
                     </tr>
 
                     {% endfor %}
@@ -61,9 +61,9 @@
                     </tr>
                     <tr>
                         <td colspan="5">
-                        <a class="btn-warning float-right mx-2 p-1"  href='/checkout/'>Proceed to checkout</a>
-                        <a class="btn-primary float-right ml-2 p-1" href='/'>Continue shopping</a>
-                    </td>
+                            <a class="btn-warning float-right mx-2 p-1"  href='/checkout/'>Proceed to checkout</a>
+                            <a class="btn-primary float-right ml-2 p-1" href='/'>Continue shopping</a>
+                        </td>
                     </tr>
                     {% endif  %}
                 </tbody> 

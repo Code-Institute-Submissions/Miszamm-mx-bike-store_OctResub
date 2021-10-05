@@ -157,6 +157,12 @@ p.text-muted{
     color: white !important;
 }
 
+td a.item-name:hover, a.item-name:focus{
+    color: red;
+    text-decoration: none;
+    outline: none;
+  }
+
 @media (max-width: 991px) {
     .btn.btn-outline-black.rounded-0,
     .btn.btn-black.rounded-0 {
@@ -164,3 +170,4 @@ p.text-muted{
         font-size: .75rem;
     }
 }
+
