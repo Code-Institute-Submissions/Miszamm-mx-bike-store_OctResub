@@ -15,22 +15,26 @@
               <div class="view"
                   style="background-image: url('{{ MEDIA_URL }}{{ image.image }}'); background-repeat: no-repeat; background-size: cover;">
                   <div class="mask rgba-black-strong d-flex justify-content-center align-items-center">
-                      <div class="text-center white-text mx-5 wow fadeIn">
-                          <h1 class="mb-4">
-                              <strong>{{ image.title }}</strong>
-                          </h1>
+                      <div class="container">
+                          <div class="row">
+                          <div class="col-sm-6 wow fadeIn">
+                              <h1 class="title">
+                                  {{ image.title }}</strong>
+                              </h1>
 
-                          <p>
-                              <strong>{{ image.sub_title }}</strong>
-                          </p>
+                              <p class="sub-title">
+                                  {{ image.sub_title }}
+                              </p>
 
-                          <p class="mb-4 d-none d-md-block">
-                              <strong>{{ image.description }}</strong>
-                          </p>
+                              <p class="sub-title">
+                                  {{ image.description }}
+                              </p>
 
-                          <a href="{{ image.link }}" class="btn btn-outline-white btn-lg">{{ image.link_text }}
-                              <i class="fas fa-graduation-cap ml-2"></i>
-                          </a>
+                              <a href="{{ image.link }}" class="btnD1">{{ image.link_text }}
+                                  <i class="fas fa-store-alt ml-2"></i>
+                              </a>
+                          </div>
+                        </div>
                       </div>
                   </div>
               </div>
