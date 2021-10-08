@@ -14,6 +14,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.forms.models import model_to_dict
 
+import os
+import stripe
+
 
 class CheckoutView(View):
     def get(self, *args, **kwargs):
@@ -72,7 +75,7 @@ class CheckoutView(View):
                             county=county,
                             country=country,
                             zip=zip,
-                            #  user=request.user,
+                            user=self.request.user,
                             )
                 billing_address.save()
                 order.billing_address = billing_address
@@ -121,7 +124,7 @@ def add_to_cart(request, slug):
             messages.info(request, "Item quantity was updated succesfully")
             return redirect("order-summary")
         else:
-            order_item = OrderItem.objects.get_or_create(
+            order_item, created = OrderItem.objects.get_or_create(
                 item=item,
                 user=request.user,
                 ordered=False,
@@ -216,13 +219,7 @@ class SuccessView(View):
         return render(self.request, "checkout/success.html", context)
 
 
-import os
-
-import stripe
-
-
-# This is your real test secret API key.
-stripe.api_key = 'sk_test_51IUTHGAWMAUBj98U84CnKpfmV44EmBSxWGQAVeuwDr0ECfVlvdT9ImT3ZSdtfnRVtDwx6iCUxnEt0twSXu9lu1Th002CTlLLDB'
+stripe.api_key = settings.STRIPE_API_KEY
 
 
 @csrf_exempt

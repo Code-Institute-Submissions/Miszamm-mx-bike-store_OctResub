@@ -189,7 +189,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'mx-store'
 
 if development:
-    SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu16.gitpod.io'
+    SITE_DOMAIN = 'https://8000-scarlet-barnacle-fi19lnaw.ws-eu18.gitpod.io'
 else:
     SITE_DOMAIN = 'https://misza-django-mx-bike-store-app.herokuapp.com'
 
@@ -206,3 +206,5 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 DEFAULT_ORDER_EMAIL = 'miszamm@yahoo.ie'
+
+STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
