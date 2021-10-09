@@ -131,9 +131,9 @@ p.sub-title {
     font-size: 14px;
     line-height: 28px;
     font-weight: 400;
-    color: #283350;
+    color: #6c757d;
     cursor: text;
-    text-transform: capitalize;
+    text-transform: uppercase;
     transition: transform 0.3s ease-in-out;
 }
 
