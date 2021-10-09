@@ -14,8 +14,9 @@
    - Home Page 
    - Store Page
    - Product Page
+   - Product Management 
    - Contact Page
-   - Shopping Cart 
+   - Shopping Cart/Order Summary
    - Administrator Features
 * Features To Be Implemented
 * Testing
@@ -35,30 +36,33 @@ The site was deployed to Heroku, The site could be view [here](https://misza-dja
 
 # UX
 ## Project Goal
-MX BIKE STORE is the final project on my Fullstack Deevelopment Course with Code Institute and th epurpose of this project was to develope e- commerce site 
-Django framework, with fully functional payment system with Stripe, and static file hosting with AWS. The site is functional and could be used in real world with additional security 
-implamentaions to the checkout process, and furher features to product pages. 
+MX BIKE STORE is the final project on my Fullstack Development Course with Code Institute and the purpose of this project was to develope e- commerce site with use of Django framework, with fully functional payment system with Stripe, and static file hosting with AWS. The site is functional and could be used in real world, with additional security implementation to the checkout process, and furher features to product pages. 
 
 ## User Stories
 ### User Stories - Customers
 As a customer of the online store I would like to:
-* Browse products 
+* Get clear information what is the website aboout when land on the home page
+* Browse for products 
 * Search products by name or category if you are looking for specific product
 * Have access to full description of the product 
-* Have abillity to choose a product from the store and adding to a cart 
-* Have ability to update quantity of the product in the cart 
-* Create a profile so i can store order history
-* Buy a product and paying using a card 
-* Recive an email confirmation about my order 
-* Have ability to contact store owner or send an email about matters related to my purchase or upcoming events
+* Have abillity to choose a product from the store and add it to the cart 
+* Have ability to update quantity of the product or delete product from the cart
+* Create a profile, so user can access past order history and update billing address information
+if needed
+* Buy a product and pay securly using a Stripe card payment functionality
+* Recive an email confirmation once transaction is completed 
+* Have ability to send an enquiry or compalin if needed
 
 ### User Stories - Administrator
 As a store administrator I would like to:
-* Add/remove or update product to keep the store up to date 
-* Add new promotional materials to the store to keep users informed about latest realeses or promotions
-* Recive orders and emails related to the offers 
-* Keep users informed about best selling products or offers
-* ability to store informations about previous purchasess
+* Have ability to add/delete or update products to product list without logging in to admin panel(front end)
+* Have ability to add new promotional materials to the store home page,
+ to keep users informed about latest realeses or promotions
+* Have ability to read users enquiries or complains  
+* Have ability to store informations about previous purchasess
+* Have ability to view orders placed by users
+* store users emails so in the future, emaails with promotional materials could be sent 
+
 
 ## Wireframes
 The wireframes where created based on user stories, and provide a starting point 
@@ -120,14 +124,14 @@ additional_information | models.TextField(null=True)
 
 
 ## Design
-Colours picked for this project where carefully selected even though it might look like the home page is overloaded with dark colours it was done on purpouse,
+Colours picked for this project where carefully selected even though, it might look like the home page is overloaded with dark colours it was done on purpouse, contrasted colors where used to a headings to maintain balance. 
 to contrast rather bright colours of the entire range of products.
 ![](/static/img/images/c.scheme.png)
 
 Typography 
 
 Two fonts from [Google Fonts](
-Google Fontshttps://fonts.google.com) where used fro the project Helvetica and Roboto.
+Google Fontshttps://fonts.google.com) where used for the project Helvetica and Roboto.
 
 Icons used in this project comes from [FontAwesome](https://fontawesome.com/)
 
@@ -135,10 +139,10 @@ Icons used in this project comes from [FontAwesome](https://fontawesome.com/)
 
 Home Page 
 
-- The home page display slideshow with descriptice images and headings which could be updated by the 
-administrator of the page depends on requireents. 
-- home page presents minimalistic design with the newest product offers display on th ecarousel
- with call to action button placed in the center of the page to engage with user.
+- The home page display slideshow with descriptive images and headings which could be updated by  
+store owner or administrator of the page depends on requireents in admin panel.
+- home page presents minimalistic design with the newest product offers display on the carousel
+ with call to action button placed in the left, bottom side of the page. 
 
 Store Page
 
@@ -146,7 +150,7 @@ Store Page
     • image of the product
     • brand 
     • category 
-    • label 
+    • link to full description  
     • price
 - on the second navbar user has opportunity to search for the product by name or category, 
 once the card with the product is selected, user is rdirected to the product page.
@@ -163,26 +167,49 @@ Cart Page
 
 - Once item is selected user is redirected to order summary page 
 - on the page there are basic informations about the items choosen by user,
- like list of products, quantity, total price 
-- two buttons continoue shooping and proceed to checkout placed below the order summary table,
+ like list of products, containing name(link to full description), quantity, total price 
+- two buttons: continoue shooping and proceed to checkout placed below the order summary table,
 - depends on the user choice after choosing either option you will be redirected to the checkout or 
-store.
+ back to store.
+- there is also delete icon added beside each item details allowing user to remove product from order summary
+- cart icon dispalying total number of items in the cart 
+- although there is no image of each item added to the cart in order summary page, user will be presented with images and quantity 
+of individual item on the checkout page
+
+
+Profile Page
+
+- after creating an account, user have an access to profile page where he can update his billing details and have a look at order history
+if one exist
+
+
+Add/update/delete Product Page 
+
+- if user is loged in as an admin, he will have an access to product management page where products could be updated
+ created or deleted depends on the requirements
+
 
 Checkout Page
 
-- on the checkout page user summary of th eorder is presented along with checkout from to be filled in
-with required informations like address country zip codeonce th eform is filled in,
-user will be redirected to stripe payment form
-- once payment is submitted user will be redirected to success page where will be presented with information about 
-completion of the orther 
+- on the checkout page the order is presented along with the image, checkout form to be filled out
+with required information, like address country zip code etc. once the form is filled out and submitted,
+user will be redirected to Stripe payment form with items list and images and card details
+- once payment is submitted, user will receive confirmation message and will be redirected to Success page,
+ where information about completion of the order will be presented and confirmation email sent to the user
+
+
+Contact page
+
+- contact page contains heading with paragraph and a form where user can send enquiry or complain 
 
 
 ## Features for further implementation
 
-- saving billing address details
-- profile paage 
 - more secure checkout form
-- abiblity to save order details 
+- user ability to write review about purchased products
+- more integrated payment 
+- for site administration, automated stock control functionality will be added allowing 
+owner to see the amount of stock in the wearhouse
 
 ## Testing 
 
@@ -195,8 +222,12 @@ unourtunatelly, they are not corrected yet.
 CSS validation with the [W3C Jigsaw Validator](https://jigsaw.w3.org/) returned some expected errors from vendor extensions. Code written by me tested by direct input didn' show any errors.
 Which means the code is compliant with W3C standards. 
 
-Extensive testing through out all pages was carryd out and there is still good few small and bigger issues to solve, 
-The general functionality ofthe page is working, morre security implementations needs to be added.
+Extensive testing through out all pages was carryd out. All user stories are covered. User is able to search, for products, read descriptions,
+add or delete product from the cart log in or register, complete checkout and payment and receive confirmation message with purchase details,
+and also confirmation email. Once loged in as an admin there is additional functionality added, allowing user to add new products to the product list
+and also update and delete them if not needed anymore or out of stock.
+The website reach all user stories but more security implementations needs to be added. Broken links are also removed or updated for 
+better user experience. 
 
 ## Deployment
 
