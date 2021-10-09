@@ -9,29 +9,29 @@
     <hr>
         <h2 class="logo-font mb-4 text-center">Contact Us</h2>
         <p class="title">If you have any questions about our products range or demo testing days,
-             we would love to hear from you. Please fill the following form to get in touch.</p>
+             we would love to hear from you. Please fill out the following form to get in touch.</p>
     <hr>
     <form class="container" action="{% url 'contact' %}" method="POST">
         {% csrf_token %}
         <div class="contact-form row">
-            <div class="form-group" col-lg-6>
+            <div class="form-group col-lg-6" >
                 <input id="name" class="input-text" type="text" name="name" required>
                 <label for="name" class="label">Name</label>
             </div>
-            <div class="form-group" col-lg-6>
+            <div class="form-group col-lg-6" >
                 <input id="email" class="input-text" type="email" name="email" required>
                 <label for="email" class="label">Email</label>
             </div>
-            <div class="form-group" col-lg-6>
-                <input id="company" class="input-text" type="company" name="company">
+            <div class="form-group col-lg-6" >
+                <input id="company" class="input-text" type="text" name="company">
                 <label for="company" class="label">Company Name</label>
             </div>
-            <div class="form-group" col-lg-6>
+            <div class="form-group col-lg-6" >
                 <input id="phone" class="input-text" type="text" name="phone" required>
                 <label for="phone" class="label">Contact Number</label>
             </div>
             
-            <div class="form-group" col-lg-12>
+            <div class="form-group col-lg-12">
                 <div class="pb-4">
                     <p class="text-muted text-left">Select message type</p>
                     <input type="radio" name="message_type" value="EN">Enquiry
@@ -40,7 +40,7 @@
                 <input id="message" class="input-text" type="text" name="message">
                 <label for="message" class="label">Message</label>
             </div>
-            <div class="form-group" col-lg-12>
+            <div class="form-group col-lg-12">
              <button class="btn btn-black rounded-0 text-uppercase text-center" type="submit">
                 <i class="fas fa-envelope-open-text pr-2"></i>Send Message
              </button>   
