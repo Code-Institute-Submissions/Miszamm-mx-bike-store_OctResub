@@ -95,7 +95,8 @@
                   <a class="item-name" href="{% url 'product' order_item.item.slug %}">
                     {{ order_item.item.title }}
                   </a>
-                </strong></h6>
+                </strong>
+              </h6>
                 <img src="{{ MEDIA_URL }}{{ order_item.item.image }}" class="w-50 my-0" alt="image">
                 <small class="text-muted">{{ order_item.quantity }}</small>
               

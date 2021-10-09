@@ -65,7 +65,7 @@ body {
 
 h1.title {
     text-transform: uppercase;
-    color: #F93800;
+    color: #CCCCFF;
     font-weight: 1000;
     font-size: 2.8em;
     margin: 0;
@@ -74,7 +74,7 @@ h1.title {
 }
 
 p.sub-title {
-    color: #F93800;
+    color: #CCCCFF;
     font-size: 1.2em;
     line-height: 1.5em;
     margin: 1em 0 0;
@@ -182,7 +182,11 @@ p.text-muted{
     color: white !important;
 }
 
-td a.item-name:hover, a.item-name:focus{
+a.item-name {
+    color: #212529;
+}
+
+a.item-name:hover, a.item-name:focus{
     color: red;
     text-decoration: none;
     outline: none;
