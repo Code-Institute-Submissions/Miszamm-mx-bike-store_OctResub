@@ -4,19 +4,6 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 from django.conf import settings
 from .models import Contact
-#  def contact(request):
-#    """
-#    This view handles the contact form
-#    """
-#
-#    send_mail(
-#        'Subject here',
-#       'Here is the message.',
-#        'miszamm@zohomail.eu',
-#        ['miszamm@yahoo.ie'],
-#        fail_silently=False,
-#    )
-#    return render(request, 'contact.html')
 
 
 def contact(request):
